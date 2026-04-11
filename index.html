@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cima Advisors, CPAs LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0d2b4e;
+      --sky: #2e7ebb;
+      --sky-light: #5ba3d9;
+      --gold: #c8a84b;
+      --white: #ffffff;
+      --off-white: #f4f7fb;
+      --text-muted: #8a9bb0;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 20%, rgba(46,126,187,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(46,126,187,0.10) 0%, transparent 55%),
+        linear-gradient(160deg, #0a2240 0%, #0d2b4e 50%, #091e38 100%);
+    }
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(46,126,187,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,126,187,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .wrapper {
+      position: relative; z-index: 1; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 48px 24px 60px;
+    }
+    .lang-toggle {
+      position: absolute; top: 32px; right: 32px;
+      display: flex;
+      border: 1px solid rgba(91,163,217,0.35);
+      border-radius: 6px; overflow: hidden;
+    }
+    .lang-btn {
+      padding: 8px 16px; background: transparent;
+      color: var(--text-muted); border: none; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.06em;
+    }
+    .lang-btn.active { background: var(--sky); color: var(--white); }
+    .brand {
+      margin-top: 60px; display: flex; flex-direction: column;
+      align-items: center; gap: 20px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .mountain-svg {
+      width: 72px; height: 72px;
+      filter: drop-shadow(0 4px 24px rgba(46,126,187,0.5));
+    }
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; letter-spacing: 0.02em;
+      text-align: center; line-height: 1.1;
+    }
+    .brand-name span { color: var(--sky-light); }
+    .brand-sub {
+      font-size: 13px; letter-spacing: 0.22em;
+      color: var(--text-muted); text-transform: uppercase; text-align: center;
+    }
+    .badge {
+      margin-top: 40px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 22px;
+      border: 1px solid var(--gold); border-radius: 100px;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold);
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold); animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    .headline {
+      margin-top: 48px; text-align: center; max-width: 640px;
+      animation: fadeUp 0.9s 0.25s ease both;
+    }
+    .headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 400; line-height: 1.35; color: var(--off-white);
+    }
+    .headline p {
+      margin-top: 18px; font-size: 16px; font-weight: 300;
+      color: var(--text-muted); line-height: 1.7;
+    }
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--sky), transparent);
+      margin: 40px auto;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+    .services-label {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--sky-light); text-align: center; margin-bottom: 24px;
+      animation: fadeUp 0.9s 0.35s ease both;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px; max-width: 760px; width: 100%;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(91,163,217,0.15);
+      border-radius: 10px; padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+    }
+    .service-card:hover {
+      background: rgba(46,126,187,0.12);
+      border-color: rgba(91,163,217,0.4);
+      transform: translateY(-2px);
+    }
+    .service-icon { font-size: 20px; flex-shrink: 0; line-height: 1; }
+    .service-text { font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.4; }
+    .contact-section {
+      margin-top: 56px; text-align: center;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+    .contact-label {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--sky-light); margin-bottom: 28px;
+    }
+    .contact-cards {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(91,163,217,0.2);
+      border-radius: 12px; padding: 18px 28px;
+      text-decoration: none; color: var(--white);
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      min-width: 260px;
+    }
+    .contact-card:hover {
+      background: rgba(46,126,187,0.15);
+      border-color: var(--sky);
+      transform: translateY(-2px);
+    }
+    .contact-icon-wrap {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(46,126,187,0.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-icon-wrap svg {
+      width: 20px; height: 20px; stroke: var(--sky-light);
+      fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .contact-info { text-align: left; }
+    .contact-type {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3px;
+    }
+    .contact-value { font-size: 15px; font-weight: 500; }
+    .footer {
+      margin-top: 64px; text-align: center;
+      font-size: 12px; color: var(--text-muted); letter-spacing: 0.05em;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+    .footer strong { color: rgba(255,255,255,0.4); font-weight: 400; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.75); }
+    }
+    @media (max-width: 480px) {
+      .lang-toggle { top: 16px; right: 16px; }
+      .brand { margin-top: 80px; }
+      .contact-card { min-width: 100%; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="grid-overlay"></div>
+
+<div class="wrapper">
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-es">Español</button>
+    <button class="lang-btn" id="btn-en">English</button>
+  </div>
+
+  <div class="brand">
+    <svg class="mountain-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#5ba3d9;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#2e7ebb;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="mtGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#2e7ebb;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0d2b4e;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <polygon points="30,70 65,18 100,70" fill="url(#mtGrad2)" opacity="0.6"/>
+      <polygon points="0,70 40,12 80,70" fill="url(#mtGrad)"/>
+      <polygon points="40,12 33,32 47,32" fill="white" opacity="0.9"/>
+    </svg>
+    <div>
+      <div class="brand-name">Cima <span>Advisors</span></div>
+      <div class="brand-sub">CPAs LLC &nbsp;&middot;&nbsp; Denver, Colorado</div>
+    </div>
+  </div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    <span id="badge-text">Sitio en construcción — próximamente</span>
+  </div>
+
+  <div class="headline">
+    <h1 id="headline-h1">Impuestos federales y estatales, contabilidad y más — para individuos y negocios en Denver</h1>
+    <p id="headline-p">Estamos finalizando nuestro sitio web. Mientras tanto, estamos listos para atenderle. Somos CPAs con experiencia en impuestos personales y de negocios, contabilidad, y servicios notariales. Contáctenos directamente.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="services-label" id="services-label">Lo que ofrecemos</div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">&#127482;&#127480;</div>
+      <div class="service-text" id="svc-1">Declaración de impuestos federales — personas físicas y negocios</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127956;&#65039;</div>
+      <div class="service-text" id="svc-2">Declaración de impuestos estatales de Colorado</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128218;</div>
+      <div class="service-text" id="svc-3">Contabilidad y bookkeeping mensual</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128188;</div>
+      <div class="service-text" id="svc-4">Nómina (Payroll) para pequeños negocios</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127991;&#65039;</div>
+      <div class="service-text" id="svc-5">Impuesto sobre ventas (Sales Tax)</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128283;</div>
+      <div class="service-text" id="svc-6">Trámites de ITIN (Número de identificación fiscal)</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127970;</div>
+      <div class="service-text" id="svc-7">Formación de negocios — LLC, S-Corp y más</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#9997;&#65039;</div>
+      <div class="service-text" id="svc-8">Servicios de Notaría</div>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-label" id="contact-label">Contáctenos hoy</div>
+    <div class="contact-cards">
+
+      <a href="tel:3035703195" class="contact-card">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.05 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-type" id="phone-label">Teléfono</div>
+          <div class="contact-value">(303) 570-3195</div>
+        </div>
+      </a>
+
+      <a href="mailto:daniel.duran@cimaadvisorscpa.com" class="contact-card">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-info">
+          <div class="contact-type" id="email-label">Correo electrónico</div>
+          <div class="contact-value">daniel.duran@cimaadvisorscpa.com</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>&copy; 2025 Cima Advisors, CPAs LLC</strong> &nbsp;&middot;&nbsp; Denver, Colorado
+  </div>
+
+</div>
+
+<script>
+var strings = {
+  es: {
+    'badge-text': 'Sitio en construcción — próximamente',
+    'headline-h1': 'Impuestos federales y estatales, contabilidad y más — para individuos y negocios en Denver',
+    'headline-p': 'Estamos finalizando nuestro sitio web. Mientras tanto, estamos listos para atenderle. Somos CPAs con experiencia en impuestos personales y de negocios, contabilidad, y servicios notariales. Contáctenos directamente.',
+    'services-label': 'Lo que ofrecemos',
+    'svc-1': 'Declaración de impuestos federales — personas físicas y negocios',
+    'svc-2': 'Declaración de impuestos estatales de Colorado',
+    'svc-3': 'Contabilidad y bookkeeping mensual',
+    'svc-4': 'Nómina (Payroll) para pequeños negocios',
+    'svc-5': 'Impuesto sobre ventas (Sales Tax)',
+    'svc-6': 'Trámites de ITIN (Número de identificación fiscal)',
+    'svc-7': 'Formación de negocios — LLC, S-Corp y más',
+    'svc-8': 'Servicios de Notaría',
+    'contact-label': 'Contáctenos hoy',
+    'phone-label': 'Teléfono',
+    'email-label': 'Correo electrónico'
+  },
+  en: {
+    'badge-text': 'Site under construction — coming soon',
+    'headline-h1': 'Federal and state income tax, accounting, and more — for individuals and businesses in Denver',
+    'headline-p': 'We are finishing our website. In the meantime, we are ready to help. We are CPAs experienced in personal and business taxes, accounting, and notary services. Contact us directly.',
+    'services-label': 'What we offer',
+    'svc-1': 'Federal income tax returns — individuals & businesses',
+    'svc-2': 'Colorado state income tax returns',
+    'svc-3': 'Monthly accounting & bookkeeping',
+    'svc-4': 'Payroll for small businesses',
+    'svc-5': 'Sales tax filing & compliance',
+    'svc-6': 'ITIN application & processing',
+    'svc-7': 'Business formation — LLC, S-Corp & more',
+    'svc-8': 'Certified notary services',
+    'contact-label': 'Contact us today',
+    'phone-label': 'Phone',
+    'email-label': 'Email'
+  }
+};
+
+function setLang(lang) {
+  var data = strings[lang];
+  for (var id in data) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = data[id];
+  }
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  try { localStorage.setItem('cima-lang', lang); } catch(e) {}
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('btn-es').addEventListener('click', function() { setLang('es'); });
+  document.getElementById('btn-en').addEventListener('click', function() { setLang('en'); });
+  var saved = 'es';
+  try { saved = localStorage.getItem('cima-lang') || 'es'; } catch(e) {}
+  setLang(saved);
+});
+</script>
+
+</body>
+</html>
