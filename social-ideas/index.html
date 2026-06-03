@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cima Ideas</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cima Ideas">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a2f5e">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2f5e;
+  --navy-deep: #0f1e3d;
+  --blue-mid: #2b5299;
+  --blue-sky: #4a90d9;
+  --blue-light: #7ab8f5;
+  --blue-pale: #dceefb;
+  --gold: #c9a84c;
+  --gold-light: #f0d98a;
+  --white: #ffffff;
+  --off-white: #f5f8fd;
+  --gray-text: #4a5568;
+  --gray-light: #e8edf5;
+  --gray-mid: #a0aec0;
+  --success: #38a169;
+  --ig-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  --fb-blue: #1877f2;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--navy-deep);
+  overscroll-behavior: none;
+}
+
+/* ── HEADER ── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy-deep);
+  padding: calc(var(--safe-top) + 12px) 20px 0;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--blue-sky), var(--blue-mid));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.header-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.header-text p {
+  font-size: 0.68rem;
+  color: var(--blue-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* Language Toggle */
+.lang-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.lang-btn {
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.lang-btn.active {
+  background: var(--blue-sky);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(74,144,217,0.5);
+}
+
+/* Platform tabs */
+.platform-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.platform-tab {
+  flex: 1;
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.platform-tab.active-all {
+  background: rgba(255,255,255,0.15);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.platform-tab.active-ig {
+  background: rgba(220,39,67,0.25);
+  color: #ff8fa3;
+  border-color: rgba(220,39,67,0.5);
+}
+
+.platform-tab.active-fb {
+  background: rgba(24,119,242,0.25);
+  color: #74aaff;
+  border-color: rgba(24,119,242,0.5);
+}
+
+/* Category chips */
+.categories-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.categories-scroll::-webkit-scrollbar { display: none; }
+
+.cat-chip {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.cat-chip.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-deep);
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  padding: 16px 16px calc(var(--safe-bottom) + 90px);
+}
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+
+.stats-count {
+  font-size: 0.8rem;
+  color: var(--gray-text);
+  font-weight: 500;
+}
+
+.stats-count span {
+  font-weight: 700;
+  color: var(--blue-sky);
+}
+
+.btn-shuffle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(26,47,94,0.25);
+}
+
+.btn-shuffle:active {
+  transform: scale(0.95);
+  background: var(--blue-mid);
+}
+
+/* Idea Cards */
+.ideas-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.idea-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 2px 16px rgba(26,47,94,0.08);
+  border: 1px solid var(--gray-light);
+  transition: transform 0.15s, box-shadow 0.15s;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.idea-card:active {
+  transform: scale(0.985);
+}
+
+/* Card top row */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-cat {
+  background: var(--blue-pale);
+  color: var(--blue-mid);
+}
+
+.badge-type {
+  background: #fef9ec;
+  color: #92640a;
+  border: 1px solid #f0d98a;
+}
+
+.badge-ig {
+  background: linear-gradient(45deg, #f09433, #dc2743);
+  color: white;
+}
+
+.badge-fb {
+  background: #1877f2;
+  color: white;
+}
+
+.badge-both {
+  background: linear-gradient(90deg, #dc2743 40%, #1877f2 60%);
+  color: white;
+}
+
+/* Favorite btn */
+.btn-fav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 2px;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-fav:active { transform: scale(1.3); }
+
+/* Card title */
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* Post idea */
+.card-idea {
+  background: var(--off-white);
+  border-radius: 12px;
+  padding: 13px 15px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--blue-sky);
+}
+
+.card-idea p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--gray-text);
+}
+
+/* Hashtags */
+.card-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hashtag {
+  font-size: 0.73rem;
+  color: var(--blue-sky);
+  font-weight: 600;
+}
+
+/* Card actions */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-copy {
+  flex: 1;
+  padding: 10px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-copy:active { background: var(--blue-mid); transform: scale(0.97); }
+.btn-copy.copied { background: var(--success); }
+
+.btn-copy-title {
+  flex: 1;
+  padding: 10px;
+  background: var(--off-white);
+  color: var(--navy);
+  border: 1.5px solid var(--gray-light);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-copy-title:active { background: var(--gray-light); transform: scale(0.97); }
+
+/* ── FAB (Floating Action Bar) ── */
+.fab-bar {
+  position: fixed;
+  bottom: calc(var(--safe-bottom) + 16px);
+  left: 16px;
+  right: 16px;
+  background: var(--navy-deep);
+  border-radius: 18px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 32px rgba(15,30,61,0.45);
+  z-index: 50;
+}
+
+.fab-favorites {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.08);
+  transition: all 0.2s;
+}
+
+.fab-random {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--blue-sky);
+  color: var(--white);
+  border: none;
+  border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(74,144,217,0.4);
+}
+
+.fab-random:active { transform: scale(0.95); background: var(--blue-mid); }
+
+/* ── FAVORITES VIEW ── */
+.view-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,30,61,0.7);
+  z-index: 200;
+  display: none;
+  align-items: flex-end;
+}
+
+.view-overlay.open { display: flex; }
+
+.favorites-sheet {
+  background: var(--white);
+  width: 100%;
+  max-height: 80vh;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(var(--safe-bottom) + 20px);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--gray-light);
+  border-radius: 2px;
+  margin: 12px auto 0;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.sheet-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--navy);
+}
+
+.sheet-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gray-light);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--gray-text);
+}
+
+.sheet-body {
+  overflow-y: auto;
+  padding: 16px 20px;
+  flex: 1;
+}
+
+.empty-favorites {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray-mid);
+}
+
+.empty-favorites .emoji { font-size: 2.5rem; margin-bottom: 10px; }
+.empty-favorites p { font-size: 0.9rem; line-height: 1.5; }
+
+/* ── SPOTLIGHT (Random Pick) ── */
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,30,61,0.85);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.spotlight-overlay.open { display: flex; }
+
+.spotlight-card {
+  background: var(--white);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.spotlight-header {
+  background: linear-gradient(135deg, var(--navy-deep), var(--blue-mid));
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spotlight-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.spotlight-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.spotlight-body {
+  padding: 20px;
+}
+
+.spotlight-next {
+  width: 100%;
+  margin-top: 14px;
+  padding: 13px;
+  background: var(--blue-sky);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.spotlight-next:active { background: var(--blue-mid); transform: scale(0.97); }
+
+/* ── INSTALL BANNER ── */
+.install-banner {
+  margin: 0 16px 14px;
+  background: linear-gradient(135deg, var(--gold), #b8940d);
+  border-radius: 14px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.install-banner-text {
+  flex: 1;
+}
+
+.install-banner-text strong {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--navy-deep);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.install-banner-text small {
+  font-size: 0.73rem;
+  color: rgba(15,30,61,0.7);
+  line-height: 1.4;
+}
+
+.install-banner-dismiss {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  color: rgba(15,30,61,0.6);
+}
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-mid);
+}
+
+.no-results .emoji { font-size: 3rem; margin-bottom: 12px; }
+.no-results h3 { font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+.no-results p { font-size: 0.85rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-top">
+    <div class="header-brand">
+      <div class="header-icon">💡</div>
+      <div class="header-text">
+        <h1>Cima Ideas</h1>
+        <p>Social Media Generator</p>
+      </div>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+
+  <!-- Platform tabs -->
+  <div class="platform-tabs">
+    <button class="platform-tab active-all" data-platform="all" onclick="setPlatform('all')">
+      🌐 <span data-en="All" data-es="Todo">All</span>
+    </button>
+    <button class="platform-tab" data-platform="instagram" onclick="setPlatform('instagram')">
+      📸 Instagram
+    </button>
+    <button class="platform-tab" data-platform="facebook" onclick="setPlatform('facebook')">
+      👍 Facebook
+    </button>
+  </div>
+
+  <!-- Category chips -->
+  <div class="categories-scroll">
+    <button class="cat-chip active" data-cat="all" onclick="setCat('all')">
+      <span data-en="✨ All Topics" data-es="✨ Todo">✨ All Topics</span>
+    </button>
+    <button class="cat-chip" data-cat="tax" onclick="setCat('tax')">
+      <span data-en="🧾 Tax Tips" data-es="🧾 Impuestos">🧾 Tax Tips</span>
+    </button>
+    <button class="cat-chip" data-cat="bookkeeping" onclick="setCat('bookkeeping')">
+      <span data-en="📊 Bookkeeping" data-es="📊 Contabilidad">📊 Bookkeeping</span>
+    </button>
+    <button class="cat-chip" data-cat="payroll" onclick="setCat('payroll')">
+      <span data-en="💼 Payroll" data-es="💼 Nómina">💼 Payroll</span>
+    </button>
+    <button class="cat-chip" data-cat="business" onclick="setCat('business')">
+      <span data-en="🏢 Business" data-es="🏢 Negocios">🏢 Business</span>
+    </button>
+    <button class="cat-chip" data-cat="itin" onclick="setCat('itin')">
+      <span data-en="🪪 ITIN" data-es="🪪 ITIN">🪪 ITIN</span>
+    </button>
+    <button class="cat-chip" data-cat="salestax" onclick="setCat('salestax')">
+      <span data-en="🏪 Sales Tax" data-es="🏪 Sales Tax">🏪 Sales Tax</span>
+    </button>
+    <button class="cat-chip" data-cat="community" onclick="setCat('community')">
+      <span data-en="❤️ Community" data-es="❤️ Comunidad">❤️ Community</span>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- Install banner (shown once) -->
+  <div class="install-banner" id="installBanner" style="display:none;">
+    <span style="font-size:1.4rem;">📱</span>
+    <div class="install-banner-text">
+      <strong data-en="Add to Home Screen" data-es="Añadir al inicio">Add to Home Screen</strong>
+      <small data-en="Tap the Share button → 'Add to Home Screen' for app-like access" data-es="Toca Compartir → 'Añadir a inicio' para acceso rápido">Tap the Share button → 'Add to Home Screen' for app-like access</small>
+    </div>
+    <button class="install-banner-dismiss" onclick="dismissInstall()">✕</button>
+  </div>
+
+  <!-- Stats + shuffle -->
+  <div class="stats-bar">
+    <p class="stats-count">
+      <span id="visibleCount">0</span> <span data-en="ideas" data-es="ideas">ideas</span>
+    </p>
+    <button class="btn-shuffle" onclick="shuffleOrder()">
+      🔀 <span data-en="Shuffle" data-es="Mezclar">Shuffle</span>
+    </button>
+  </div>
+
+  <!-- Cards container -->
+  <div class="ideas-grid" id="cardsGrid"></div>
+</main>
+
+<!-- FAB BAR -->
+<div class="fab-bar">
+  <button class="fab-favorites" onclick="openFavorites()">
+    ⭐ <span id="favCount">0</span> <span data-en="Saved" data-es="Guardadas">Saved</span>
+  </button>
+  <button class="fab-random" onclick="openRandom()">
+    🎲 <span data-en="Random Idea" data-es="Idea Aleatoria">Random Idea</span>
+  </button>
+</div>
+
+<!-- FAVORITES SHEET -->
+<div class="view-overlay" id="favOverlay" onclick="closeFavorites(event)">
+  <div class="favorites-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <h2>⭐ <span data-en="Saved Ideas" data-es="Ideas Guardadas">Saved Ideas</span></h2>
+      <button class="sheet-close" onclick="closeFavorites()">✕</button>
+    </div>
+    <div class="sheet-body" id="favBody"></div>
+  </div>
+</div>
+
+<!-- SPOTLIGHT (Random) -->
+<div class="spotlight-overlay" id="spotlightOverlay" onclick="closeSpotlight(event)">
+  <div class="spotlight-card" id="spotlightCard">
+    <div class="spotlight-header">
+      <span class="spotlight-label" data-en="🎲 Random Idea" data-es="🎲 Idea Aleatoria">🎲 Random Idea</span>
+      <button class="spotlight-close" onclick="closeSpotlight()">✕</button>
+    </div>
+    <div class="spotlight-body" id="spotlightBody"></div>
+    <div style="padding: 0 20px 20px;">
+      <button class="spotlight-next" onclick="openRandom()">
+        <span data-en="🎲 Another Random Idea" data-es="🎲 Otra Idea Aleatoria">🎲 Another Random Idea</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+let currentLang = 'en';
+let currentPlatform = 'all';
+let currentCat = 'all';
+let favorites = JSON.parse(localStorage.getItem('cima-favs') || '[]');
+let currentOrder = null;
+
+// ── DATA ──
+const ideas = [
+  // ─── TAX TIPS ───
+  {
+    id: 1, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'tip',
+    title: { en: '5 Deductions Small Business Owners Miss', es: '5 Deducciones que los Dueños de Negocios Ignoran' },
+    idea: {
+      en: "Did you know most small business owners leave money on the table every year? 💸 Here are 5 commonly missed deductions:\n\n1. Home office expenses\n2. Vehicle mileage\n3. Business meals (50%)\n4. Education & training\n5. Health insurance premiums\n\nSave this post and talk to your CPA to see which apply to you! 📌",
+      es: "¿Sabías que muchos dueños de negocios dejan dinero sobre la mesa cada año? 💸 Aquí hay 5 deducciones que muchos ignoran:\n\n1. Gastos de oficina en casa\n2. Millaje del vehículo\n3. Comidas de negocios (50%)\n4. Educación y capacitación\n5. Primas de seguro médico\n\n¡Guarda esta publicación y habla con tu CPA! 📌"
+    },
+    hashtags: { en: ['#TaxTips', '#SmallBusiness', '#CimaAdvisors', '#Accounting', '#TaxSeason', '#Denver'], es: ['#Impuestos', '#PequeñosNegocios', '#CimaAdvisors', '#Contabilidad', '#Denver', '#Consejos'] }
+  },
+  {
+    id: 2, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Quarterly Estimated Taxes: Are You Paying?', es: 'Impuestos Trimestrales: ¿Los Estás Pagando?' },
+    idea: {
+      en: "If you're self-employed or own a business, the IRS expects you to pay taxes throughout the year — not just in April! ⚠️\n\n📅 2024 Quarterly due dates:\n• April 15\n• June 17\n• September 16\n• January 15\n\nMissing these deadlines = penalties. Avoid the stress — plan ahead! Drop a 🙋 if you want a free consultation.",
+      es: "Si eres trabajador independiente o dueño de negocio, el IRS espera que pagues impuestos durante todo el año, ¡no solo en abril! ⚠️\n\n📅 Fechas de pago trimestral:\n• 15 de abril\n• 17 de junio\n• 16 de septiembre\n• 15 de enero\n\nNo pagar = multas. ¡Planifica con anticipación! Escribe 🙋 si quieres una consulta gratuita."
+    },
+    hashtags: { en: ['#QuarterlyTaxes', '#SelfEmployed', '#IRS', '#TaxPlanning', '#CimaAdvisors', '#Colorado'], es: ['#ImpuestosTrimales', '#Autónomo', '#IRS', '#PlanificaciónFiscal', '#CimaAdvisors', '#Colorado'] }
+  },
+  {
+    id: 3, cat: 'tax', platforms: ['facebook'], type: 'question',
+    title: { en: 'What\'s Your Biggest Tax Fear?', es: '¿Cuál es tu Mayor Miedo con los Impuestos?' },
+    idea: {
+      en: "Let's be honest — taxes can be stressful! 😅 Tell us in the comments:\n\nWhat's your #1 concern when tax season arrives?\n\nA) Getting audited\nB) Owing money\nC) Missing a deadline\nD) Not knowing what I owe\n\nNo matter your answer, we're here to help! At Cima Advisors, we make taxes simple for the Latino community in Denver. 💙",
+      es: "¡Seamos honestos — los impuestos pueden ser estresantes! 😅 Dinos en los comentarios:\n\n¿Cuál es tu #1 preocupación cuando llega la temporada de impuestos?\n\nA) Ser auditado\nB) Deber dinero\nC) No llegar a tiempo\nD) No saber cuánto debo\n\n¡Sin importar tu respuesta, estamos aquí para ayudar! En Cima Advisors, hacemos los impuestos fáciles para la comunidad latina en Denver. 💙"
+    },
+    hashtags: { en: ['#TaxSeason', '#TaxHelp', '#CimaAdvisors', '#Denver', '#LatinoCommunity', '#Accounting'], es: ['#TemporadaDeImpuestos', '#AyudaConImpuestos', '#CimaAdvisors', '#Denver', '#ComunidadLatina'] }
+  },
+  {
+    id: 4, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'tip',
+    title: { en: 'IRS Letter? Don\'t Panic.', es: '¿Carta del IRS? No te Asustes.' },
+    idea: {
+      en: "Got a letter from the IRS? 😰 First — breathe. Most IRS notices are NOT audits. Here's what to do:\n\n✅ Read it carefully\n✅ Don't ignore it (deadlines matter!)\n✅ Don't call random numbers on it\n✅ Contact a CPA before responding\n\nWe help clients respond to IRS notices every day. You don't have to face it alone. DM us or call today. 📞",
+      es: "¿Recibiste una carta del IRS? 😰 Primero — respira. La mayoría de los avisos del IRS NO son auditorías. Qué hacer:\n\n✅ Léela cuidadosamente\n✅ No la ignores (¡los plazos importan!)\n✅ No llames a números sospechosos\n✅ Contacta a un CPA antes de responder\n\nAyudamos a clientes con avisos del IRS todos los días. No tienes que enfrentarlo solo. Escríbenos o llama hoy. 📞"
+    },
+    hashtags: { en: ['#IRS', '#TaxHelp', '#IRSNotice', '#CimaAdvisors', '#AccountingDenver', '#DontPanic'], es: ['#IRS', '#AyudaImpuestos', '#CimaAdvisors', '#Contabilidad', '#Denver', '#NoTeAsustes'] }
+  },
+  {
+    id: 5, cat: 'tax', platforms: ['instagram'], type: 'tip',
+    title: { en: 'Home Office Deduction Explained', es: 'Deducción por Oficina en Casa Explicada' },
+    idea: {
+      en: "Work from home? 🏡 You may qualify for the home office deduction!\n\nTwo methods:\n\n📐 Simplified: $5 per sq ft (up to 300 sq ft)\n📋 Regular: actual expenses % of home used\n\nThe space must be used REGULARLY and EXCLUSIVELY for business.\n\nSave this for tax season! 💾 Questions? We're one message away.",
+      es: "¿Trabajas desde casa? 🏡 ¡Podrías calificar para la deducción de oficina en casa!\n\nDos métodos:\n\n📐 Simplificado: $5 por pie² (hasta 300 pies²)\n📋 Regular: % de gastos reales del hogar\n\nEl espacio debe usarse de forma REGULAR y EXCLUSIVA para negocios.\n\n¡Guarda esto para la temporada de impuestos! 💾"
+    },
+    hashtags: { en: ['#HomeOffice', '#TaxDeduction', '#WorkFromHome', '#CimaAdvisors', '#SmallBusiness', '#TaxTips'], es: ['#OficinaEnCasa', '#DeducciónFiscal', '#TrabajoDesde Casa', '#CimaAdvisors', '#Impuestos'] }
+  },
+  {
+    id: 6, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'LLC vs S-Corp: Which Saves More Taxes?', es: 'LLC vs S-Corp: ¿Cuál Ahorra Más en Impuestos?' },
+    idea: {
+      en: "One of the most common questions we get: 'Should I be an LLC or S-Corp?' 🤔\n\n🔹 LLC: Simple, flexible, self-employment tax on all profits\n🔹 S-Corp: More structure, can pay yourself a salary, may reduce self-employment taxes\n\nGeneral rule: if your profit exceeds ~$40K/year, an S-Corp election could save you thousands.\n\nEvery situation is different — let's talk! 📩",
+      es: "Una de las preguntas más frecuentes: '¿Debo ser LLC o S-Corp?' 🤔\n\n🔹 LLC: Simple, flexible, impuesto de trabajo independiente sobre todas las ganancias\n🔹 S-Corp: Más estructura, puedes pagarte un salario, puede reducir impuestos\n\nRegla general: si tus ganancias superan ~$40K al año, elegir S-Corp podría ahorrarte miles.\n\n¡Cada situación es diferente — hablemos! 📩"
+    },
+    hashtags: { en: ['#LLC', '#SCorp', '#TaxStrategy', '#SmallBusiness', '#CimaAdvisors', '#BusinessTax'], es: ['#LLC', '#SCorp', '#EstrategiaFiscal', '#PequeñoNegocio', '#CimaAdvisors', '#Impuestos'] }
+  },
+  {
+    id: 7, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'seasonal',
+    title: { en: 'Tax Season Checklist', es: 'Lista de Verificación para Impuestos' },
+    idea: {
+      en: "📋 Tax Season Checklist — Save this!\n\nDocuments you'll need:\n✅ W-2s or 1099s\n✅ Social Security Numbers for dependents\n✅ Last year's tax return\n✅ Bank statements\n✅ Receipts for deductions\n✅ Mortgage interest statement\n✅ Health insurance info\n✅ Business income/expenses\n\nHave everything ready? Contact Cima Advisors — we make it easy! 💼",
+      es: "📋 Lista para Temporada de Impuestos — ¡Guárdala!\n\nDocumentos que necesitas:\n✅ W-2s o 1099s\n✅ Números de Seguro Social de dependientes\n✅ Declaración del año pasado\n✅ Estados de cuenta bancarios\n✅ Recibos de deducciones\n✅ Declaración de intereses hipotecarios\n✅ Información de seguro médico\n✅ Ingresos y gastos del negocio\n\n¿Tienes todo listo? ¡Contáctanos! 💼"
+    },
+    hashtags: { en: ['#TaxSeason', '#TaxChecklist', '#TaxPrep', '#CimaAdvisors', '#Denver', '#GetReady'], es: ['#TemporadaImpuestos', '#ListaFiscal', '#CimaAdvisors', '#Denver', '#Impuestos', '#Preparación'] }
+  },
+
+  // ─── BOOKKEEPING ───
+  {
+    id: 8, cat: 'bookkeeping', platforms: ['instagram', 'facebook'], type: 'tip',
+    title: { en: 'Mixing Personal & Business Finances = Big Mistake', es: 'Mezclar Finanzas Personales y de Negocio = Gran Error' },
+    idea: {
+      en: "🚨 Red flag alert: Are you using the same bank account for personal and business expenses?\n\nThis is one of the most common — and costly — mistakes we see!\n\n❌ Harder to track deductions\n❌ Red flag for IRS audits\n❌ Destroys your bookkeeping\n❌ Personal liability risk\n\nFix: Open a separate business checking account TODAY. It's free at most banks!\n\nShare this with a business owner who needs to see it! 👇",
+      es: "🚨 ¡Alerta de error grave! ¿Estás usando la misma cuenta bancaria para gastos personales y de negocio?\n\n¡Este es uno de los errores más comunes y costosos!\n\n❌ Más difícil rastrear deducciones\n❌ Señal de alerta para auditorías del IRS\n❌ Destruye tu contabilidad\n❌ Riesgo de responsabilidad personal\n\nSolución: ¡Abre una cuenta corriente de negocio HOY! Es gratis en la mayoría de los bancos.\n\n¡Comparte esto con un dueño de negocio que lo necesite! 👇"
+    },
+    hashtags: { en: ['#Bookkeeping', '#SmallBusiness', '#BusinessFinances', '#CimaAdvisors', '#FinanceTips', '#Accounting'], es: ['#Contabilidad', '#PequeñoNegocio', '#FinanzasNegocio', '#CimaAdvisors', '#Consejos', '#Denver'] }
+  },
+  {
+    id: 9, cat: 'bookkeeping', platforms: ['facebook'], type: 'educational',
+    title: { en: 'How to Read Your Profit & Loss Statement', es: 'Cómo Leer tu Estado de Pérdidas y Ganancias' },
+    idea: {
+      en: "Do you actually understand your P&L statement? 📊 Most business owners don't — and that's okay, we'll teach you!\n\nA Profit & Loss (P&L) statement shows:\n\n💰 Revenue — money coming in\n💸 Cost of Goods Sold — direct costs\n📉 Gross Profit — revenue minus COGS\n🔧 Operating Expenses — rent, utilities, payroll\n✅ Net Income — what's left after everything\n\nKnowing these numbers = making smarter business decisions. What questions do you have? Drop them below! 👇",
+      es: "¿Entiendes realmente tu estado de P&G? 📊 La mayoría de los dueños de negocio no entienden — ¡está bien, te enseñamos!\n\nUn estado de Pérdidas y Ganancias muestra:\n\n💰 Ingresos — dinero que entra\n💸 Costo de Ventas — costos directos\n📉 Utilidad Bruta — ingresos menos costos\n🔧 Gastos Operativos — renta, servicios, nómina\n✅ Utilidad Neta — lo que queda\n\nConocer estas cifras = mejores decisiones de negocio. ¿Tienes preguntas? ¡Déjalas abajo! 👇"
+    },
+    hashtags: { en: ['#ProfitAndLoss', '#Bookkeeping', '#SmallBusiness', '#Accounting', '#CimaAdvisors', '#FinancialLiteracy'], es: ['#PérdidasYGanancias', '#Contabilidad', '#PequeñoNegocio', '#CimaAdvisors', '#EducaciónFinanciera'] }
+  },
+  {
+    id: 10, cat: 'bookkeeping', platforms: ['instagram'], type: 'tip',
+    title: { en: '3 Bookkeeping Habits That Save You Money', es: '3 Hábitos de Contabilidad que te Ahorran Dinero' },
+    idea: {
+      en: "Bookkeeping doesn't have to be scary! 📚 These 3 habits can save you thousands:\n\n1️⃣ Categorize every expense weekly (not at tax time!)\n2️⃣ Keep receipts — snap a photo immediately\n3️⃣ Reconcile your bank account monthly\n\nBonus: Use accounting software like QuickBooks or Wave!\n\nNeed help getting started? That's exactly what we're here for. 💙 Link in bio!",
+      es: "¡La contabilidad no tiene que ser aterradora! 📚 Estos 3 hábitos te pueden ahorrar miles:\n\n1️⃣ Categoriza cada gasto semanalmente (¡no cuando lleguen los impuestos!)\n2️⃣ Guarda recibos — toma una foto de inmediato\n3️⃣ Concilia tu cuenta bancaria mensualmente\n\nExtra: ¡Usa software como QuickBooks o Wave!\n\n¿Necesitas ayuda para empezar? Para eso estamos. 💙"
+    },
+    hashtags: { en: ['#Bookkeeping', '#MoneyHabits', '#SmallBusiness', '#QuickBooks', '#CimaAdvisors', '#AccountingTips'], es: ['#Contabilidad', '#HábitosDeDinero', '#PequeñoNegocio', '#QuickBooks', '#CimaAdvisors'] }
+  },
+  {
+    id: 11, cat: 'bookkeeping', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Cash vs Accrual Accounting: What\'s the Difference?', es: 'Contabilidad de Efectivo vs Acumulación: ¿Cuál Diferencia?' },
+    idea: {
+      en: "Two ways to track your finances — which is right for you? 🤔\n\n💵 Cash Basis:\n• Record income when received\n• Record expenses when paid\n• Simpler — great for small businesses\n\n📋 Accrual Basis:\n• Record income when earned\n• Record expenses when incurred\n• Required for larger businesses\n• Better picture of long-term health\n\nMost small businesses start with cash basis. Let us help you decide! 🤝",
+      es: "Dos maneras de rastrear tus finanzas — ¿cuál es la correcta para ti? 🤔\n\n💵 Base de Efectivo:\n• Registras ingresos cuando los recibes\n• Registras gastos cuando los pagas\n• Más simple — ideal para pequeños negocios\n\n📋 Base de Acumulación:\n• Registras cuando se gana/incurre\n• Requerido para empresas más grandes\n• Mejor visión a largo plazo\n\n¡La mayoría de los pequeños negocios comienzan con base de efectivo. Déjanos ayudarte a decidir! 🤝"
+    },
+    hashtags: { en: ['#Accounting', '#CashBasis', '#AccrualBasis', '#Bookkeeping', '#CimaAdvisors', '#SmallBusiness'], es: ['#Contabilidad', '#MétodosContables', '#CimaAdvisors', '#PequeñoNegocio', '#EducaciónFinanciera'] }
+  },
+
+  // ─── PAYROLL ───
+  {
+    id: 12, cat: 'payroll', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Employee vs. Independent Contractor: Know the Difference', es: 'Empleado vs. Contratista Independiente: Conoce la Diferencia' },
+    idea: {
+      en: "Misclassifying workers is one of the most expensive mistakes a business can make! ⚠️\n\n👷 Employee:\n• You control how/when they work\n• You provide tools\n• You withhold taxes & pay benefits\n\n🔧 Independent Contractor:\n• Controls their own schedule\n• Uses their own tools\n• Pays their own taxes\n\nGetting this wrong = IRS penalties + back taxes.\n\nNot sure how to classify someone? Ask us! 📩",
+      es: "¡Clasificar incorrectamente a los trabajadores es uno de los errores más costosos! ⚠️\n\n👷 Empleado:\n• Controlas cómo/cuándo trabaja\n• Provees herramientas\n• Retienes impuestos y pagas beneficios\n\n🔧 Contratista Independiente:\n• Controla su propio horario\n• Usa sus propias herramientas\n• Paga sus propios impuestos\n\nEquivocarse = multas del IRS + impuestos atrasados.\n\n¡Si no estás seguro, pregúntanos! 📩"
+    },
+    hashtags: { en: ['#Payroll', '#Employee', '#IndependentContractor', '#IRS', '#SmallBusiness', '#CimaAdvisors'], es: ['#Nómina', '#Empleado', '#ContratistaPequeñoNegocio', '#IRS', '#CimaAdvisors', '#Denver'] }
+  },
+  {
+    id: 13, cat: 'payroll', platforms: ['facebook'], type: 'tip',
+    title: { en: 'W-2 vs 1099: What\'s the Difference?', es: 'W-2 vs 1099: ¿Cuál es la Diferencia?' },
+    idea: {
+      en: "Every January, two forms create confusion: the W-2 and 1099. Here's the quick breakdown! 📄\n\n📋 W-2 (Employee):\n• Employer withholds taxes\n• Reports wages, tips, other compensation\n• You file by April 15\n\n📋 1099-NEC (Contractor):\n• NO taxes withheld\n• Reports non-employee compensation\n• You're responsible for self-employment tax (15.3%!)\n\nGot questions about yours? Comment below or DM us! 💬",
+      es: "Cada enero, dos formularios generan confusión: el W-2 y el 1099. ¡Aquí está el resumen! 📄\n\n📋 W-2 (Empleado):\n• El empleador retiene impuestos\n• Reporta salarios y compensaciones\n• Presentas antes del 15 de abril\n\n📋 1099-NEC (Contratista):\n• NO se retienen impuestos\n• Reporta compensación no laboral\n• Responsable del impuesto de trabajo independiente (¡15.3%!)\n\n¿Tienes preguntas? ¡Comenta o escríbenos! 💬"
+    },
+    hashtags: { en: ['#W2', '#1099', '#TaxForms', '#Payroll', '#CimaAdvisors', '#TaxSeason', '#Denver'], es: ['#W2', '#1099', '#FormulaImpuestos', '#Nómina', '#CimaAdvisors', '#Impuestos'] }
+  },
+  {
+    id: 14, cat: 'payroll', platforms: ['instagram', 'facebook'], type: 'tip',
+    title: { en: 'When Do You Need to Run Payroll?', es: '¿Cuándo Necesitas Correr Nómina?' },
+    idea: {
+      en: "Running a small business and wondering when you need formal payroll? 💭 The answer is: as soon as you hire your first employee!\n\nWith payroll you need to:\n✅ Withhold federal, state & Social Security taxes\n✅ Pay employer portion of FICA\n✅ File quarterly payroll returns (941)\n✅ Issue W-2s each January\n\nDon't let payroll compliance sneak up on you. We handle it all! 💼",
+      es: "¿Tienes un pequeño negocio y te preguntas cuándo necesitas nómina formal? 💭 La respuesta: ¡tan pronto contratas tu primer empleado!\n\nCon nómina necesitas:\n✅ Retener impuestos federales, estatales y del Seguro Social\n✅ Pagar la parte patronal del FICA\n✅ Presentar declaraciones trimestrales (941)\n✅ Emitir W-2s cada enero\n\nNo dejes que el cumplimiento de nómina te sorprenda. ¡Nosotros lo manejamos todo! 💼"
+    },
+    hashtags: { en: ['#Payroll', '#SmallBusiness', '#HiringEmployees', '#BusinessCompliance', '#CimaAdvisors', '#Denver'], es: ['#Nómina', '#PequeñoNegocio', '#Empleados', '#CumplimientoFiscal', '#CimaAdvisors'] }
+  },
+
+  // ─── BUSINESS FORMATION ───
+  {
+    id: 15, cat: 'business', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Steps to Form an LLC in Colorado', es: 'Pasos para Formar una LLC en Colorado' },
+    idea: {
+      en: "Thinking about starting a business? Here's how to form an LLC in Colorado! 🏔️\n\n1️⃣ Choose your business name (check availability at SOS.CO.gov)\n2️⃣ File Articles of Organization (~$50 fee)\n3️⃣ Get an EIN from the IRS (free!)\n4️⃣ Open a business bank account\n5️⃣ Register for Colorado state taxes\n6️⃣ Get any required licenses/permits\n\nWe can guide you through every step. ¡Llámanos hoy! 📞",
+      es: "¿Pensando en iniciar un negocio? ¡Así se forma una LLC en Colorado! 🏔️\n\n1️⃣ Elige el nombre de tu negocio (verifica en SOS.CO.gov)\n2️⃣ Presenta los Artículos de Organización (~$50)\n3️⃣ Obtén un EIN del IRS (¡gratis!)\n4️⃣ Abre una cuenta bancaria de negocios\n5️⃣ Regístrate para impuestos estatales de Colorado\n6️⃣ Obtén licencias y permisos requeridos\n\nTe guiamos en cada paso. ¡Llámanos hoy! 📞"
+    },
+    hashtags: { en: ['#LLC', '#StartABusiness', '#Colorado', '#BusinessFormation', '#CimaAdvisors', '#Denver', '#Entrepreneur'], es: ['#LLC', '#IniciarNegocio', '#Colorado', '#FormaciónEmpresa', '#CimaAdvisors', '#Denver', '#Emprendedor'] }
+  },
+  {
+    id: 16, cat: 'business', platforms: ['instagram'], type: 'tip',
+    title: { en: 'EIN: What It Is and Why Every Business Needs One', es: 'EIN: Qué Es y Por Qué Todo Negocio Necesita Uno' },
+    idea: {
+      en: "Think of an EIN (Employer Identification Number) as a Social Security Number for your business. 🆔\n\nYou need one to:\n🔹 Open a business bank account\n🔹 File business taxes\n🔹 Hire employees\n🔹 Apply for business credit\n🔹 Protect your personal SSN\n\nBest part? You can get one from IRS.gov for FREE in under 15 minutes!\n\nHave questions about getting started? We're here to help. DM us! 💬",
+      es: "Piensa en el EIN (Número de Identificación del Empleador) como el número de Seguro Social de tu negocio. 🆔\n\nLo necesitas para:\n🔹 Abrir una cuenta bancaria de negocios\n🔹 Declarar impuestos del negocio\n🔹 Contratar empleados\n🔹 Solicitar crédito empresarial\n🔹 Proteger tu SSN personal\n\n¡Lo mejor? ¡Puedes obtenerlo en IRS.gov GRATIS en menos de 15 minutos!\n\n¿Preguntas? ¡Escríbenos! 💬"
+    },
+    hashtags: { en: ['#EIN', '#SmallBusiness', '#BusinessTips', '#Entrepreneur', '#CimaAdvisors', '#StartUp'], es: ['#EIN', '#PequeñoNegocio', '#Emprendedor', '#ConsejosNegocio', '#CimaAdvisors', '#Colorado'] }
+  },
+  {
+    id: 17, cat: 'business', platforms: ['facebook'], type: 'question',
+    title: { en: 'What\'s Stopping You From Starting Your Business?', es: '¿Qué te Detiene de Iniciar tu Negocio?' },
+    idea: {
+      en: "We talk to dreamers every day who have amazing business ideas but haven't taken the first step. 🌟\n\nWhat's holding you back?\n\n💬 Share in the comments — is it:\n• Fear of failure?\n• Not knowing where to start?\n• Concerns about taxes?\n• Lack of capital?\n\nWhatever it is, we've helped hundreds of Latino entrepreneurs in Denver turn their dreams into real businesses. Your story could be next. 💙",
+      es: "Cada día hablamos con personas que tienen ideas increíbles de negocio pero no han dado el primer paso. 🌟\n\n¿Qué te detiene? \n\n💬 Comparte en los comentarios — ¿es:\n• ¿Miedo al fracaso?\n• ¿No saber por dónde empezar?\n• ¿Preocupaciones sobre impuestos?\n• ¿Falta de capital?\n\nPase lo que pase, hemos ayudado a cientos de emprendedores latinos en Denver. Tu historia podría ser la próxima. 💙"
+    },
+    hashtags: { en: ['#Entrepreneur', '#DreamBig', '#StartaBusiness', '#CimaAdvisors', '#Denver', '#LatinoBusiness', '#Motivacion'], es: ['#Emprendedor', '#SueñaEnGrande', '#IniciarNegocio', '#CimaAdvisors', '#Denver', '#NegocioLatino'] }
+  },
+  {
+    id: 18, cat: 'business', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Sole Proprietor vs LLC: What\'s the Real Difference?', es: 'Propietario Único vs LLC: ¿Cuál es la Diferencia Real?' },
+    idea: {
+      en: "Many people start as a sole proprietor without realizing the risks. 😬 Here's the truth:\n\n🔓 Sole Proprietor:\n• Easy to start — no paperwork\n• You ARE the business\n• Personal assets at risk\n• No separation for taxes\n\n🛡️ LLC:\n• Protects personal assets\n• Looks more professional\n• Tax flexibility\n• Small annual fee (~$10/yr in CO)\n\nFor most business owners, an LLC is worth it. Let's talk! 📞",
+      es: "Muchas personas empiezan como propietario único sin darse cuenta de los riesgos. 😬 La verdad:\n\n🔓 Propietario Único:\n• Fácil de iniciar — sin papeleo\n• TÚ eres el negocio\n• Activos personales en riesgo\n• Sin separación fiscal\n\n🛡️ LLC:\n• Protege activos personales\n• Más profesional\n• Flexibilidad fiscal\n• Pequeña cuota anual (~$10/año en CO)\n\nPara la mayoría, una LLC vale la pena. ¡Hablemos! 📞"
+    },
+    hashtags: { en: ['#LLC', '#SoleProprietor', '#BusinessTips', '#SmallBusiness', '#CimaAdvisors', '#Colorado'], es: ['#LLC', '#PropietarioÚnico', '#ConsejosNegocio', '#PequeñoNegocio', '#CimaAdvisors', '#Colorado'] }
+  },
+
+  // ─── ITIN ───
+  {
+    id: 19, cat: 'itin', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'What is an ITIN and Who Needs One?', es: '¿Qué es un ITIN y Quién lo Necesita?' },
+    idea: {
+      en: "ITIN = Individual Taxpayer Identification Number 🪪\n\nWho needs one?\n✅ Immigrants who can't get a Social Security Number\n✅ Non-resident aliens with U.S. income\n✅ Dependents or spouses of U.S. citizens\n\nWith an ITIN you can:\n🔹 File your taxes legally\n🔹 Open a bank account\n🔹 Build credit history\n🔹 Potentially qualify for Child Tax Credit\n\nWe are certified ITIN Acceptance Agents. We can help you apply! 📞",
+      es: "ITIN = Número de Identificación Personal del Contribuyente 🪪\n\n¿Quién lo necesita?\n✅ Inmigrantes que no pueden obtener SSN\n✅ Extranjeros no residentes con ingresos en EE.UU.\n✅ Dependientes o cónyuges de ciudadanos americanos\n\nCon un ITIN puedes:\n🔹 Declarar impuestos legalmente\n🔹 Abrir una cuenta bancaria\n🔹 Construir historial de crédito\n🔹 Posiblemente calificar para Crédito Tributario por Hijos\n\n¡Somos Agentes Aceptadores certificados de ITIN! 📞"
+    },
+    hashtags: { en: ['#ITIN', '#ImmigrantTax', '#TaxHelp', '#CimaAdvisors', '#Denver', '#LatinoCommunity', '#TaxID'], es: ['#ITIN', '#ImpuestosInmigrante', '#AyudaTributaria', '#CimaAdvisors', '#Denver', '#ComunidadLatina'] }
+  },
+  {
+    id: 20, cat: 'itin', platforms: ['facebook'], type: 'tip',
+    title: { en: 'Is Your ITIN Expiring? Renew It Now!', es: '¿Tu ITIN Está Venciendo? ¡Renuévalo Ahora!' },
+    idea: {
+      en: "⚠️ Heads up! Some ITINs expire if not used on a tax return in the last 3 years — or based on the middle digits.\n\nAn expired ITIN can:\n❌ Delay your refund\n❌ Cause your return to be rejected\n❌ Make you miss out on tax credits\n\nDon't wait until tax season! Apply to renew now and avoid the rush.\n\nCima Advisors is a certified ITIN Acceptance Agent — we handle the whole process for you. Call us today! ☎️",
+      es: "⚠️ ¡Atención! Algunos ITIN vencen si no se usaron en una declaración de impuestos en los últimos 3 años, o según los dígitos del medio.\n\nUn ITIN vencido puede:\n❌ Retrasar tu reembolso\n❌ Hacer que tu declaración sea rechazada\n❌ Hacerte perder créditos fiscales\n\n¡No esperes hasta la temporada de impuestos! Renueva ahora y evita la avalancha.\n\nCima Advisors es un Agente Aceptador certificado — manejamos todo el proceso. ¡Llámanos! ☎️"
+    },
+    hashtags: { en: ['#ITIN', '#ITINRenewal', '#TaxDeadline', '#CimaAdvisors', '#Denver', '#LatinoCommunity', '#Taxes'], es: ['#ITIN', '#RenovaciónITIN', '#CimaAdvisors', '#Denver', '#ComunidadLatina', '#Impuestos'] }
+  },
+  {
+    id: 21, cat: 'itin', platforms: ['instagram'], type: 'educational',
+    title: { en: 'Can I Get Tax Credits With an ITIN?', es: '¿Puedo Obtener Créditos Fiscales con un ITIN?' },
+    idea: {
+      en: "Great news for ITIN holders! 🎉 You may qualify for:\n\n✅ Child Tax Credit (with qualifying children who have SSNs)\n✅ Child & Dependent Care Credit\n✅ American Opportunity Tax Credit\n✅ Lifetime Learning Credit\n\n❌ Note: ITIN holders generally do NOT qualify for Earned Income Credit.\n\nEveryone's situation is different. Let us review your return and make sure you're getting every credit you deserve! 💰",
+      es: "¡Buenas noticias para quienes tienen ITIN! 🎉 Puedes calificar para:\n\n✅ Crédito Tributario por Hijos (con hijos que tengan SSN)\n✅ Crédito por Cuidado de Hijos y Dependientes\n✅ Crédito de Oportunidad Americana\n✅ Crédito de Aprendizaje de por Vida\n\n❌ Nota: Los titulares de ITIN generalmente NO califican para el Crédito de Ingresos del Trabajo.\n\n¡Cada situación es diferente. Permítanos revisar tu declaración! 💰"
+    },
+    hashtags: { en: ['#ITIN', '#TaxCredits', '#ChildTaxCredit', '#CimaAdvisors', '#ImmigrantRights', '#TaxRefund'], es: ['#ITIN', '#CréditosFiscales', '#CréditoTributario', '#CimaAdvisors', '#DerechosInmigrantes', '#Reembolso'] }
+  },
+
+  // ─── SALES TAX ───
+  {
+    id: 22, cat: 'salestax', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Does Your Business Need to Collect Sales Tax?', es: '¿Tu Negocio Necesita Cobrar Impuestos de Ventas?' },
+    idea: {
+      en: "Not every business collects sales tax — but if you sell the wrong thing without collecting it, you could owe big! 😬\n\nIn Colorado, sales tax applies to:\n🔹 Most tangible goods\n🔹 Some digital products\n🔹 Certain services\n\n🚫 Generally exempt:\n• Groceries (non-prepared food)\n• Prescription medicine\n• Medical equipment\n\nColorado is one of the most complex sales tax states — 700+ local jurisdictions!\n\nNot sure if you need to collect? Ask us! 📩",
+      es: "No todo negocio cobra impuestos de ventas — ¡pero si vendes lo incorrecto sin cobrarlos, podrías deber mucho! 😬\n\nEn Colorado, el impuesto de ventas aplica a:\n🔹 La mayoría de bienes tangibles\n🔹 Algunos productos digitales\n🔹 Ciertos servicios\n\n🚫 Generalmente exentos:\n• Comestibles (no preparados)\n• Medicamentos con receta\n• Equipo médico\n\n¡Colorado es uno de los estados con impuestos de ventas más complejos — más de 700 jurisdicciones locales!\n\n¿No estás seguro? ¡Pregúntanos! 📩"
+    },
+    hashtags: { en: ['#SalesTax', '#Colorado', '#SmallBusiness', '#BusinessCompliance', '#CimaAdvisors', '#Denver'], es: ['#ImpuestoVentas', '#Colorado', '#PequeñoNegocio', '#CumplimientoFiscal', '#CimaAdvisors', '#Denver'] }
+  },
+  {
+    id: 23, cat: 'salestax', platforms: ['facebook'], type: 'tip',
+    title: { en: 'Selling Online? Sales Tax Has Changed.', es: '¿Vendes en Línea? Los Impuestos de Ventas Han Cambiado.' },
+    idea: {
+      en: "If you sell products online, pay attention! 📢 Since the 2018 South Dakota v. Wayfair Supreme Court decision, states can require you to collect sales tax even if you have NO physical presence there.\n\nThis is called 'economic nexus.'\n\nColorado requires collection if you exceed:\n💰 $100,000 in sales OR\n📦 200 transactions in Colorado\n\nSelling on Amazon, Etsy, Shopify? You may already have obligations you don't know about. Let's review your situation! 🔍",
+      es: "Si vendes productos en línea, ¡presta atención! 📢 Desde la decisión de 2018 del Tribunal Supremo, los estados pueden exigirte cobrar impuestos de ventas aunque NO tengas presencia física allí.\n\nEsto se llama 'nexo económico.'\n\nColorado requiere cobro si superas:\n💰 $100,000 en ventas O\n📦 200 transacciones en Colorado\n\n¿Vendes en Amazon, Etsy, Shopify? Puede que ya tengas obligaciones que desconoces. ¡Revisemos tu situación! 🔍"
+    },
+    hashtags: { en: ['#SalesTax', '#Ecommerce', '#OnlineSales', '#Wayfair', '#CimaAdvisors', '#SmallBusiness', '#Colorado'], es: ['#ImpuestoVentas', '#Ecommerce', '#VentasEnLinea', '#CimaAdvisors', '#PequeñoNegocio', '#Colorado'] }
+  },
+
+  // ─── COMMUNITY / LATINO ───
+  {
+    id: 24, cat: 'community', platforms: ['instagram', 'facebook'], type: 'story',
+    title: { en: 'Why We Started Cima Advisors', es: 'Por Qué Fundamos Cima Advisors' },
+    idea: {
+      en: "The name 'Cima' means 'peak' or 'summit' in Spanish. 🏔️\n\nWe chose it because we believe every family and business in our community deserves to reach their financial peak — regardless of where they came from.\n\nOur mission is simple: provide world-class accounting services to the Latino community in Denver, in your language, at your side.\n\nIf you've ever felt lost navigating the U.S. tax system, you're not alone. We built this for you. 💙\n\n¿Conoces a alguien que nos necesita? Tag them below! 👇",
+      es: "El nombre 'Cima' significa la cima de una montaña o punto más alto. 🏔️\n\nLo elegimos porque creemos que cada familia y negocio en nuestra comunidad merece alcanzar su cumbre financiera — sin importar de dónde vengan.\n\nNuestra misión es simple: ofrecer servicios contables de clase mundial a la comunidad latina en Denver, en tu idioma, a tu lado.\n\nSi alguna vez te has sentido perdido navegando el sistema fiscal americano, no estás solo. Construimos esto para ti. 💙\n\n¿Conoces a alguien que nos necesita? ¡Etiquétalo abajo! 👇"
+    },
+    hashtags: { en: ['#CimaAdvisors', '#LatinoCommunity', '#Denver', '#OurStory', '#Accounting', '#ForTheCommunity'], es: ['#CimaAdvisors', '#ComunidadLatina', '#Denver', '#NuestraHistoria', '#Contabilidad', '#ParaLaComunidad'] }
+  },
+  {
+    id: 25, cat: 'community', platforms: ['instagram', 'facebook'], type: 'motivational',
+    title: { en: 'Financial Literacy in Our Community', es: 'Educación Financiera en Nuestra Comunidad' },
+    idea: {
+      en: "Financial literacy can change lives — and that's not an exaggeration. 💡\n\nWhen a family learns to:\n✅ File taxes correctly\n✅ Build business credit\n✅ Save strategically\n✅ Understand deductions\n\n...generational wealth becomes possible. 🌱\n\nWe're committed to educating our community, one post at a time. Follow us for weekly tips in English and Spanish!\n\n¿Qué tema quieres que cubramos? Drop it in the comments! 👇",
+      es: "La educación financiera puede cambiar vidas — y eso no es exageración. 💡\n\nCuando una familia aprende a:\n✅ Declarar impuestos correctamente\n✅ Construir crédito empresarial\n✅ Ahorrar estratégicamente\n✅ Entender las deducciones\n\n...la riqueza generacional se vuelve posible. 🌱\n\nEstamos comprometidos a educar a nuestra comunidad, un post a la vez. ¡Síguenos para consejos semanales en inglés y español!\n\n¿Qué tema quieres que cubramos? ¡Déjalo en los comentarios! 👇"
+    },
+    hashtags: { en: ['#FinancialLiteracy', '#LatinoCommunity', '#Denver', '#CimaAdvisors', '#GenerationalWealth', '#Education'], es: ['#EducaciónFinanciera', '#ComunidadLatina', '#Denver', '#CimaAdvisors', '#RiquezaGeneracional'] }
+  },
+  {
+    id: 26, cat: 'community', platforms: ['facebook'], type: 'question',
+    title: { en: 'Would You Rather: Tax Edition 😄', es: '¿Preferirías: Edición de Impuestos 😄' },
+    idea: {
+      en: "Let's have some fun on a Friday! 🎉 Tax Edition: Would You Rather...\n\nA) Get a big tax refund in April\nOR\nB) Owe nothing AND not overpay all year?\n\n(Hint: Most financial experts say B is actually smarter — a refund means you gave the IRS an interest-free loan!)\n\nComment A or B and tell us why! And if you want to optimize YOUR tax situation — you know who to call. 😉📞",
+      es: "¡Divirtámonos un viernes! 🎉 Edición Impuestos: ¿Preferirías...\n\nA) Recibir un gran reembolso en abril\nO\nB) No deber nada Y no pagar de más durante el año?\n\n(Pista: La mayoría de los expertos dicen que B es más inteligente — ¡un reembolso significa que le diste un préstamo sin intereses al IRS!)\n\n¡Comenta A o B y dinos por qué! Y si quieres optimizar TU situación fiscal — ya sabes a quién llamar. 😉📞"
+    },
+    hashtags: { en: ['#WouldYouRather', '#TaxFun', '#FridayFun', '#CimaAdvisors', '#TaxRefund', '#TaxTips'], es: ['#PreferirIas', '#ImpuestosDiversión', '#ViernesDeFun', '#CimaAdvisors', '#Reembolso', '#Impuestos'] }
+  },
+  {
+    id: 27, cat: 'community', platforms: ['instagram'], type: 'motivational',
+    title: { en: 'Celebrate Your Business Anniversary! 🎉', es: '¡Celebra el Aniversario de tu Negocio! 🎉' },
+    idea: {
+      en: "To every entrepreneur who started their business with a dream and kept going even when it was hard — THIS is for you. 🙌\n\nEvery tax return filed, every payroll run, every year of books kept clean... that's YOUR success.\n\nAt Cima Advisors, we're honored to be part of your journey. ¿Cuántos años llevas en tu negocio?\n\nShare your business anniversary in the comments! We'll celebrate with you! 🎊",
+      es: "Para cada emprendedor que empezó su negocio con un sueño y siguió adelante aunque fue difícil — ESTO es para ti. 🙌\n\nCada declaración presentada, cada nómina corrida, cada año de libros limpios... ese es TU éxito.\n\nEn Cima Advisors, es un honor ser parte de tu camino. ¿Cuántos años llevas en tu negocio?\n\n¡Comparte tu aniversario empresarial en los comentarios! ¡Lo celebramos contigo! 🎊"
+    },
+    hashtags: { en: ['#BusinessAnniversary', '#Entrepreneur', '#SmallBusiness', '#CimaAdvisors', '#Denver', '#LatinoBusiness', '#Celebrate'], es: ['#AniversarioNegocio', '#Emprendedor', '#PequeñoNegocio', '#CimaAdvisors', '#Denver', '#Celebra'] }
+  },
+  {
+    id: 28, cat: 'community', platforms: ['instagram', 'facebook'], type: 'educational',
+    title: { en: 'Free Tax Resources for the Latino Community', es: 'Recursos Gratuitos de Impuestos para la Comunidad Latina' },
+    idea: {
+      en: "Did you know there are FREE tax resources available? 🆓\n\n✅ VITA (Volunteer Income Tax Assistance) — free filing for income under ~$67K\n✅ IRS Free File — if income under $79K\n✅ Colorado LEAP — energy assistance programs\n✅ Child Tax Credit — up to $2,000 per child\n\nAt Cima Advisors, we believe in empowering our community with knowledge. Even if you don't use our services, use these resources!\n\nShare this to help someone in your network. 🙏",
+      es: "¿Sabías que hay recursos GRATUITOS disponibles? 🆓\n\n✅ VITA — presentación gratuita para ingresos menores a ~$67K\n✅ IRS Free File — si ingresos menores a $79K\n✅ Colorado LEAP — programas de asistencia energética\n✅ Crédito Tributario por Hijos — hasta $2,000 por hijo\n\nEn Cima Advisors creemos en empoderar a nuestra comunidad con conocimiento. ¡Incluso si no usas nuestros servicios, usa estos recursos!\n\n¡Comparte esto para ayudar a alguien en tu red! 🙏"
+    },
+    hashtags: { en: ['#FreeTaxHelp', '#VITA', '#TaxResources', '#LatinoCommunity', '#CimaAdvisors', '#Denver', '#Community'], es: ['#AyudaGratuita', '#VITA', '#RecursosFiscales', '#ComunidadLatina', '#CimaAdvisors', '#Denver'] }
+  },
+
+  // ─── EXTRA TAX / PLANNING ───
+  {
+    id: 29, cat: 'tax', platforms: ['instagram', 'facebook'], type: 'tip',
+    title: { en: 'Year-End Tax Planning Moves to Make NOW', es: 'Movimientos de Planificación Fiscal de Fin de Año: HAZLOS AHORA' },
+    idea: {
+      en: "It's not too late to lower your 2024 tax bill! ⏰ Here are smart moves to make before December 31:\n\n💰 Maximize your retirement contributions (401k, IRA)\n📉 Harvest investment losses\n🎁 Make charitable donations\n🧾 Pre-pay deductible business expenses\n📊 Review your estimated tax payments\n\nTax planning is a year-round game — not just April! Book a year-end planning session with us today. 📅",
+      es: "¡No es demasiado tarde para reducir tu factura fiscal de 2024! ⏰ Movimientos inteligentes antes del 31 de diciembre:\n\n💰 Maximiza tus aportes de jubilación (401k, IRA)\n📉 Cosechar pérdidas de inversión\n🎁 Hacer donaciones benéficas\n🧾 Pagar anticipadamente gastos de negocio deducibles\n📊 Revisar tus pagos de impuestos estimados\n\n¡La planificación fiscal es un juego de todo el año, no solo de abril! Agenda una sesión de planificación hoy. 📅"
+    },
+    hashtags: { en: ['#YearEndTaxPlanning', '#TaxStrategy', '#SmallBusiness', '#Retirement', '#CimaAdvisors', '#FinancialPlanning'], es: ['#PlanificaciónFiscal', '#EstrategiaFiscal', '#PequeñoNegocio', '#Jubilación', '#CimaAdvisors'] }
+  },
+  {
+    id: 30, cat: 'tax', platforms: ['instagram'], type: 'tip',
+    title: { en: 'Mileage Deduction: Are You Tracking It?', es: 'Deducción por Millaje: ¿Lo Estás Rastreando?' },
+    idea: {
+      en: "One of the easiest deductions to miss — and one of the most valuable! 🚗\n\n2024 Standard Mileage Rate: 67 cents per mile\n\n✅ Track every mile driven for:\n• Client visits\n• Bank runs\n• Post office trips\n• Business errands\n\nApps like MileIQ, Everlance, or even a simple spreadsheet work great!\n\n10,000 business miles = $6,700 deduction. Don't leave that on the table! 💸",
+      es: "¡Una de las deducciones más fáciles de perder — y de las más valiosas! 🚗\n\nTasa Estándar de Millaje 2024: 67 centavos por milla\n\n✅ Registra cada milla conducida para:\n• Visitas a clientes\n• Ida al banco\n• Viajes al correo\n• Mandados de negocios\n\nApps como MileIQ, Everlance, o incluso una hoja de cálculo funcionan.\n\n¡10,000 millas de negocio = $6,700 de deducción. ¡No lo dejes pasar! 💸"
+    },
+    hashtags: { en: ['#MileageDeduction', '#TaxTips', '#SmallBusiness', '#CimaAdvisors', '#TaxDeductions', '#BusinessExpenses'], es: ['#DeducciónMillaje', '#ConsejosImpuestos', '#PequeñoNegocio', '#CimaAdvisors', '#DeduccionesFiscales'] }
+  }
+];
+
+// ── RENDER ──
+function getFiltered() {
+  let filtered = ideas;
+
+  if (currentPlatform !== 'all') {
+    filtered = filtered.filter(i => i.platforms.includes(currentPlatform));
+  }
+
+  if (currentCat !== 'all') {
+    filtered = filtered.filter(i => i.cat === currentCat);
+  }
+
+  if (currentOrder) {
+    filtered = [...filtered].sort((a, b) => currentOrder.indexOf(a.id) - currentOrder.indexOf(b.id));
+  }
+
+  return filtered;
+}
+
+function getPlatformBadge(platforms) {
+  const both = platforms.includes('instagram') && platforms.includes('facebook');
+  const ig = platforms.includes('instagram') && !platforms.includes('facebook');
+  const fb = platforms.includes('facebook') && !platforms.includes('instagram');
+  if (both) return '<span class="badge badge-both">📸👍 Both</span>';
+  if (ig) return '<span class="badge badge-ig">📸 Instagram</span>';
+  if (fb) return '<span class="badge badge-fb">👍 Facebook</span>';
+  return '';
+}
+
+function getCatLabel(cat) {
+  const cats = {
+    tax: { en: '🧾 Tax Tips', es: '🧾 Impuestos' },
+    bookkeeping: { en: '📊 Bookkeeping', es: '📊 Contabilidad' },
+    payroll: { en: '💼 Payroll', es: '💼 Nómina' },
+    business: { en: '🏢 Business', es: '🏢 Negocios' },
+    itin: { en: '🪪 ITIN', es: '🪪 ITIN' },
+    salestax: { en: '🏪 Sales Tax', es: '🏪 Sales Tax' },
+    community: { en: '❤️ Community', es: '❤️ Comunidad' }
+  };
+  return cats[cat]?.[currentLang] || cat;
+}
+
+function getTypeLabel(type) {
+  const types = {
+    tip: { en: '💡 Tip', es: '💡 Consejo' },
+    educational: { en: '📚 Educational', es: '📚 Educativo' },
+    question: { en: '❓ Question', es: '❓ Pregunta' },
+    story: { en: '📖 Story', es: '📖 Historia' },
+    motivational: { en: '🌟 Motivational', es: '🌟 Motivacional' },
+    seasonal: { en: '📅 Seasonal', es: '📅 Estacional' }
+  };
+  return types[type]?.[currentLang] || type;
+}
+
+function isFav(id) {
+  return favorites.includes(id);
+}
+
+function renderCard(idea, mini = false) {
+  const fav = isFav(idea.id);
+  const hashtags = idea.hashtags[currentLang].map(h => `<span class="hashtag">${h}</span>`).join('');
+  const text = idea.idea[currentLang];
+  const title = idea.title[currentLang];
+
+  if (mini) {
+    return `
+      <div class="idea-card" style="margin-bottom:12px;">
+        <div class="card-badges" style="margin-bottom:10px;">
+          <span class="badge badge-cat">${getCatLabel(idea.cat)}</span>
+          ${getPlatformBadge(idea.platforms)}
+        </div>
+        <div class="card-title" style="font-size:0.95rem;">${title}</div>
+        <div class="card-idea"><p>${text.replace(/\n/g, '<br>')}</p></div>
+        <div class="card-hashtags">${hashtags}</div>
+        <button class="btn-copy" onclick="copyIdea(${idea.id}, 'full-mini-${idea.id}', this)">
+          📋 <span data-en="Copy Post" data-es="Copiar">Copy Post</span>
+        </button>
+      </div>`;
+  }
+
+  return `
+    <div class="idea-card" id="card-${idea.id}">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-cat">${getCatLabel(idea.cat)}</span>
+          <span class="badge badge-type">${getTypeLabel(idea.type)}</span>
+          ${getPlatformBadge(idea.platforms)}
+        </div>
+        <button class="btn-fav" onclick="toggleFav(${idea.id})" aria-label="Save">
+          ${fav ? '⭐' : '☆'}
+        </button>
+      </div>
+      <div class="card-title">${title}</div>
+      <div class="card-idea">
+        <p>${text.replace(/\n/g, '<br>')}</p>
+      </div>
+      <div class="card-hashtags">${hashtags}</div>
+      <div class="card-actions">
+        <button class="btn-copy-title" onclick="copyText('${encodeTitle(title)}', this)">
+          📌 <span data-en="Copy Title" data-es="Copiar Título">Copy Title</span>
+        </button>
+        <button class="btn-copy" id="copybtn-${idea.id}" onclick="copyIdea(${idea.id}, 'copybtn-${idea.id}', this)">
+          📋 <span data-en="Copy Post" data-es="Copiar Publicación">Copy Post</span>
+        </button>
+      </div>
+    </div>`;
+}
+
+function encodeTitle(title) {
+  return title.replace(/'/g, "\\'").replace(/"/g, '\\"');
+}
+
+function renderCards() {
+  const filtered = getFiltered();
+  const grid = document.getElementById('cardsGrid');
+  document.getElementById('visibleCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <div class="emoji">🔍</div>
+        <h3>${currentLang === 'en' ? 'No ideas found' : 'No hay ideas'}</h3>
+        <p>${currentLang === 'en' ? 'Try a different category or platform filter.' : 'Prueba una categoría o plataforma diferente.'}</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(i => renderCard(i)).join('');
+  applyLangToEl(grid);
+}
+
+// ── COPY ──
+async function copyIdea(id, btnId, btnEl) {
+  const idea = ideas.find(i => i.id === id);
+  if (!idea) return;
+
+  const text = idea.idea[currentLang] + '\n\n' + idea.hashtags[currentLang].join(' ');
+
+  try {
+    await navigator.clipboard.writeText(text);
+    const originalHTML = btnEl.innerHTML;
+    btnEl.classList.add('copied');
+    btnEl.innerHTML = `✅ ${currentLang === 'en' ? 'Copied!' : '¡Copiado!'}`;
+    setTimeout(() => {
+      btnEl.classList.remove('copied');
+      btnEl.innerHTML = originalHTML;
+    }, 2000);
+  } catch (e) {
+    alert(currentLang === 'en' ? 'Copy failed. Please select and copy manually.' : 'Error al copiar. Selecciona y copia manualmente.');
+  }
+}
+
+async function copyText(text, btnEl) {
+  const decoded = text.replace(/\\'/g, "'").replace(/\\"/g, '"');
+  try {
+    await navigator.clipboard.writeText(decoded);
+    const orig = btnEl.innerHTML;
+    btnEl.style.background = 'var(--success)';
+    btnEl.style.color = 'white';
+    btnEl.style.borderColor = 'var(--success)';
+    btnEl.innerHTML = '✅ ' + (currentLang === 'en' ? 'Copied!' : '¡Copiado!');
+    setTimeout(() => {
+      btnEl.style.background = '';
+      btnEl.style.color = '';
+      btnEl.style.borderColor = '';
+      btnEl.innerHTML = orig;
+    }, 2000);
+  } catch (e) {}
+}
+
+// ── FAVORITES ──
+function toggleFav(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(f => f !== id);
+  } else {
+    favorites.push(id);
+  }
+  localStorage.setItem('cima-favs', JSON.stringify(favorites));
+  updateFavCount();
+
+  const card = document.getElementById(`card-${id}`);
+  if (card) {
+    const btn = card.querySelector('.btn-fav');
+    if (btn) btn.textContent = favorites.includes(id) ? '⭐' : '☆';
+  }
+}
+
+function updateFavCount() {
+  document.getElementById('favCount').textContent = favorites.length;
+}
+
+function openFavorites() {
+  const overlay = document.getElementById('favOverlay');
+  const body = document.getElementById('favBody');
+
+  if (favorites.length === 0) {
+    body.innerHTML = `
+      <div class="empty-favorites">
+        <div class="emoji">☆</div>
+        <p>${currentLang === 'en' ? 'No saved ideas yet. Tap ☆ on any card to save it!' : 'No hay ideas guardadas. ¡Toca ☆ en cualquier tarjeta para guardarla!'}</p>
+      </div>`;
+  } else {
+    const favIdeas = ideas.filter(i => favorites.includes(i.id));
+    body.innerHTML = favIdeas.map(i => renderCard(i, true)).join('');
+    applyLangToEl(body);
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFavorites(e) {
+  if (e && e.target !== document.getElementById('favOverlay')) return;
+  document.getElementById('favOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── RANDOM / SPOTLIGHT ──
+function openRandom() {
+  const filtered = getFiltered();
+  if (filtered.length === 0) return;
+  const pick = filtered[Math.floor(Math.random() * filtered.length)];
+
+  const body = document.getElementById('spotlightBody');
+  body.innerHTML = renderCard(pick);
+  applyLangToEl(body);
+
+  document.getElementById('spotlightOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSpotlight(e) {
+  if (e && e.target !== document.getElementById('spotlightOverlay')) return;
+  document.getElementById('spotlightOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── SHUFFLE ──
+function shuffleOrder() {
+  const filtered = getFiltered();
+  const ids = filtered.map(i => i.id).sort(() => Math.random() - 0.5);
+  currentOrder = ids;
+  renderCards();
+}
+
+// ── FILTERS ──
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  applyLangToEl(document.body);
+  renderCards();
+}
+
+function setPlatform(platform) {
+  currentPlatform = platform;
+  currentOrder = null;
+  document.querySelectorAll('.platform-tab').forEach(t => {
+    t.className = 'platform-tab';
+    if (t.dataset.platform === platform) {
+      if (platform === 'all') t.classList.add('active-all');
+      else if (platform === 'instagram') t.classList.add('active-ig');
+      else if (platform === 'facebook') t.classList.add('active-fb');
+    }
+  });
+  renderCards();
+}
+
+function setCat(cat) {
+  currentCat = cat;
+  currentOrder = null;
+  document.querySelectorAll('.cat-chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.cat === cat);
+  });
+  renderCards();
+}
+
+// ── LANG TEXT UPDATE ──
+function applyLangToEl(el) {
+  el.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = el.dataset[currentLang] || el.dataset.en;
+  });
+}
+
+// ── INSTALL BANNER ──
+function dismissInstall() {
+  document.getElementById('installBanner').style.display = 'none';
+  localStorage.setItem('cima-install-dismissed', '1');
+}
+
+function checkInstallBanner() {
+  const dismissed = localStorage.getItem('cima-install-dismissed');
+  const standalone = window.navigator.standalone;
+  if (!dismissed && !standalone) {
+    setTimeout(() => {
+      document.getElementById('installBanner').style.display = 'flex';
+    }, 3000);
+  }
+}
+
+// ── SERVICE WORKER ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', () => {
+  updateFavCount();
+  renderCards();
+  checkInstallBanner();
+  applyLangToEl(document.body);
+});
+</script>
+</body>
+</html>
