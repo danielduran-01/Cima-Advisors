@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLine Business Value Assessment | Cima Advisors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #141414;
+    --panel: #1c1c1e;
+    --panel-2: #242427;
+    --border: #34343a;
+    --orange: #f5821f;
+    --orange-bright: #ff9d3d;
+    --orange-deep: #d96c0a;
+    --gold: #f4b942;
+    --white: #ffffff;
+    --gray: #9a9aa2;
+    --gray-light: #c7c7cf;
+    --green: #2ec45f;
+    --green-soft: #1f8f44;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--white);
+    background: var(--black);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── HEADER ── */
+  header.masthead {
+    background: linear-gradient(160deg, #000 0%, #16100a 55%, #1c1208 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 26px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header.masthead::after {
+    content: "";
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(245,130,31,0.22) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .brandbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 1.18rem;
+    letter-spacing: -0.01em;
+  }
+  .brand .mark {
+    width: 26px; height: 26px;
+    background: var(--orange);
+    transform: rotate(45deg);
+    border-radius: 5px;
+    position: relative;
+  }
+  .brand .mark::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    background: var(--black);
+    border-radius: 2px;
+  }
+  .brand .bl { color: var(--orange); }
+  .advisor-tag {
+    font-size: 0.72rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    text-align: right;
+  }
+  .advisor-tag strong { color: var(--gray-light); }
+
+  .hero {
+    position: relative;
+    z-index: 2;
+    padding: 40px 0 46px;
+  }
+  .hero .eyebrow {
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+  }
+  .hero h1 .accent { color: var(--orange); }
+  .hero p {
+    color: var(--gray-light);
+    max-width: 64ch;
+    margin-top: 18px;
+    font-size: 1.02rem;
+  }
+
+  /* ── TOP SUMMARY STRIP ── */
+  .topline {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .topline .cell {
+    background: linear-gradient(180deg, #1b1208, #141414);
+    padding: 20px 22px;
+  }
+  .topline .cell .lbl {
+    font-size: 0.72rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .topline .cell .val {
+    font-size: clamp(1.5rem, 3vw, 2.15rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+    color: var(--white);
+  }
+  .topline .cell .val.gain { color: var(--orange-bright); }
+  .topline .cell .sub { font-size: 0.74rem; color: var(--gray); margin-top: 2px; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    padding: 36px 0 80px;
+    align-items: start;
+  }
+
+  /* ── INPUTS PANEL ── */
+  .inputs {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 22px;
+    position: sticky;
+    top: 20px;
+  }
+  .inputs h2 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .inputs .hint { font-size: 0.78rem; color: var(--gray); margin-bottom: 20px; }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gray-light);
+    margin-bottom: 6px;
+  }
+  .field label .q {
+    color: var(--gray);
+    font-size: 0.72rem;
+    cursor: help;
+  }
+  .input-shell {
+    display: flex;
+    align-items: center;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 0 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input-shell:focus-within {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(245,130,31,0.15);
+  }
+  .input-shell .pre, .input-shell .post {
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .input-shell input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 11px 6px;
+    width: 100%;
+    min-width: 0;
+  }
+  .input-shell input::-webkit-outer-spin-button,
+  .input-shell input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .input-shell input[type=number] { -moz-appearance: textfield; }
+
+  .reset-btn {
+    width: 100%;
+    margin-top: 8px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--gray-light);
+    border-radius: 9px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .reset-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+  .preset-row { display: flex; gap: 8px; margin-bottom: 18px; }
+  .preset-row button {
+    flex: 1;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    color: var(--gray-light);
+    border-radius: 8px;
+    padding: 8px 4px;
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .preset-row button:hover, .preset-row button.active {
+    border-color: var(--orange);
+    color: var(--orange);
+    background: rgba(245,130,31,0.08);
+  }
+
+  /* ── RESULTS ── */
+  .results { min-width: 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .section-head h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .section-head .note { font-size: 0.8rem; color: var(--gray); }
+
+  /* value bar chart */
+  .chart {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 132px;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 0;
+  }
+  .bar-row .name { font-size: 0.85rem; font-weight: 600; color: var(--gray-light); }
+  .bar-track {
+    height: 22px;
+    background: var(--charcoal);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange-deep), var(--orange-bright));
+    border-radius: 6px;
+    width: 0;
+    transition: width 0.6s cubic-bezier(.2,.7,.2,1);
+  }
+  .bar-row .amt { text-align: right; font-weight: 700; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+
+  /* driver cards */
+  .drivers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .driver {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .driver:hover { border-color: #4a4a52; transform: translateY(-2px); }
+  .driver::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--orange);
+  }
+  .driver .dhead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .driver .dname { font-size: 1.02rem; font-weight: 700; letter-spacing: -0.01em; }
+  .driver .dvalue {
+    font-size: 1.32rem;
+    font-weight: 800;
+    color: var(--orange-bright);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .driver .dvalue.qual { font-size: 0.78rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+  .driver ul { list-style: none; }
+  .driver li {
+    font-size: 0.82rem;
+    color: var(--gray-light);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 7px;
+    line-height: 1.45;
+  }
+  .driver li::before {
+    content: "";
+    position: absolute;
+    left: 2px; top: 8px;
+    width: 5px; height: 5px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .driver .basis {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.74rem;
+    color: var(--gray);
+  }
+  .driver .basis b { color: var(--gray-light); font-weight: 600; }
+
+  /* ── ROI / payback footer ── */
+  .roi-band {
+    margin-top: 32px;
+    background: linear-gradient(135deg, #1b1208, #241405);
+    border: 1px solid var(--orange-deep);
+    border-radius: 16px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .roi-band .item .lbl { font-size: 0.74rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+  .roi-band .item .num { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-top: 6px; letter-spacing: -0.02em; }
+  .roi-band .item .num.big { color: var(--orange-bright); }
+  .roi-band .item .cap { font-size: 0.76rem; color: var(--gray); margin-top: 3px; }
+
+  .investment-field {
+    margin-top: 22px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .investment-field .txt { font-size: 0.84rem; color: var(--gray-light); }
+  .investment-field .input-shell { max-width: 220px; }
+
+  /* ── disclaimer / methodology ── */
+  .method {
+    margin-top: 40px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .method h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+  .method p, .method li { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+  .method ul { margin: 10px 0 0 18px; }
+  .method li { margin-bottom: 5px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--gray);
+  }
+  footer .bl { color: var(--orange); font-weight: 700; }
+
+  .actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+  .actions button {
+    background: var(--orange);
+    color: #1a0e00;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .actions button:hover { background: var(--orange-bright); }
+  .actions button:active { transform: translateY(1px); }
+  .actions button.ghost { background: none; border: 1px solid var(--border); color: var(--gray-light); }
+  .actions button.ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+    .inputs { position: relative; top: 0; }
+    .topline { grid-template-columns: repeat(2, 1fr); }
+    .drivers { grid-template-columns: 1fr; }
+    .roi-band { grid-template-columns: repeat(2, 1fr); }
+    .bar-row { grid-template-columns: 130px 1fr 96px; gap: 8px; }
+    .bar-row .name { font-size: 0.76rem; }
+  }
+  @media (max-width: 560px) {
+    .topline { grid-template-columns: 1fr 1fr; }
+    .roi-band { grid-template-columns: 1fr 1fr; }
+    .bar-row { grid-template-columns: 1fr; gap: 4px; }
+    .bar-row .amt { text-align: left; }
+  }
+  @media print {
+    .inputs, .actions, .preset-row, header.masthead::after { display: none !important; }
+    body { background: #fff; color: #000; }
+    .driver, .chart, .roi-band, .method { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brandbar">
+      <div class="brand"><span class="mark"></span><span class="bl">Black</span>Line</div>
+      <div class="advisor-tag">Business Value Assessment<br><strong>Prepared by Cima Advisors, CPAs</strong></div>
+    </div>
+    <div class="hero">
+      <div class="eyebrow">Record-to-Report Modernization · ROI Model</div>
+      <h1>How <span class="accent">BlackLine</span> Impacts Your Company</h1>
+      <p>An interactive, board-ready quantification of the value BlackLine's financial close, intercompany,
+         and reconciliation automation can unlock across nine strategic value drivers. Enter your company
+         profile on the left — every figure below recalculates instantly.</p>
+    </div>
+
+    <div class="topline">
+      <div class="cell">
+        <div class="lbl">Total Annual Value</div>
+        <div class="val gain" id="t_annual">$0</div>
+        <div class="sub">recurring, year over year</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">3-Year Value</div>
+        <div class="val" id="t_three">$0</div>
+        <div class="sub">cumulative impact</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">% of Revenue</div>
+        <div class="val" id="t_pct">0%</div>
+        <div class="sub">value as share of revenue</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Net ROI</div>
+        <div class="val" id="t_roi">0%</div>
+        <div class="sub">year 1, net of investment</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+
+    <!-- ───── INPUTS ───── -->
+    <aside class="inputs">
+      <h2>Your Company Profile</h2>
+      <p class="hint">Adjust to match the prospect. Defaults reflect mid-market benchmarks.</p>
+
+      <div class="preset-row">
+        <button data-preset="mid" class="active">Mid-Market</button>
+        <button data-preset="ent">Enterprise</button>
+        <button data-preset="lower">Lower MM</button>
+      </div>
+
+      <div class="field">
+        <label>Annual Revenue <span class="q" title="Total company revenue">$</span></label>
+        <div class="input-shell"><span class="pre">$</span><input type="number" id="revenue" value="500000000"><span class="post">USD</span></div>
+      </div>
+
+      <div class="field">
+        <label>Finance &amp; Accounting FTEs <span class="q" title="Headcount in the close, recon & RTR functions">#</span></label>
+        <div class="input-shell"><input type="number" id="ftes" value="45"><span class="post">people</span></div>
+      </div>
+
+      <div class="field">
+        <label>Avg. Fully-Loaded Salary <span class="q" title="Salary + benefits + overhead per F&A FTE">$</span></label>
+        <div class="input-shell"><span class="pre">$</span><input type="number" id="salary" value="95000"><span class="post">/yr</span></div>
+      </div>
+
+      <div class="field">
+        <label>Days Sales Outstanding (DSO) <span class="q" title="Average collection period">days</span></label>
+        <div class="input-shell"><input type="number" id="dso" value="52"><span class="post">days</span></div>
+      </div>
+
+      <div class="field">
+        <label>Days to Close <span class="q" title="Days to complete the financial close">days</span></label>
+        <div class="input-shell"><input type="number" id="close" value="9"><span class="post">days</span></div>
+      </div>
+
+      <div class="field">
+        <label>Weighted Avg. Cost of Capital <span class="q" title="WACC used to value freed cash">%</span></label>
+        <div class="input-shell"><input type="number" id="wacc" value="9" step="0.1"><span class="post">%</span></div>
+      </div>
+
+      <div class="field">
+        <label>Total Debt / Borrowings <span class="q" title="Interest-bearing debt for trust-premium savings">$</span></label>
+        <div class="input-shell"><span class="pre">$</span><input type="number" id="debt" value="120000000"><span class="post">USD</span></div>
+      </div>
+
+      <div class="field">
+        <label>Annual Compliance &amp; Audit Cost <span class="q" title="Internal controls, SOX, external audit fees">$</span></label>
+        <div class="input-shell"><span class="pre">$</span><input type="number" id="compliance" value="2200000"><span class="post">USD</span></div>
+      </div>
+
+      <div class="field">
+        <label>F&amp;A Voluntary Turnover <span class="q" title="Annual turnover rate of finance staff">%</span></label>
+        <div class="input-shell"><input type="number" id="turnover" value="16" step="0.5"><span class="post">%</span></div>
+      </div>
+
+      <div class="field">
+        <label>Acquisitions / Year <span class="q" title="M&A deals requiring integration annually">#</span></label>
+        <div class="input-shell"><input type="number" id="deals" value="2"><span class="post">deals</span></div>
+      </div>
+
+      <button class="reset-btn" id="reset">↻ Reset to benchmarks</button>
+    </aside>
+
+    <!-- ───── RESULTS ───── -->
+    <main class="results">
+      <div class="section-head">
+        <h2>Value at a Glance</h2>
+        <span class="note">Annual recurring value by driver</span>
+      </div>
+
+      <div class="chart" id="chart"></div>
+
+      <div class="section-head">
+        <h2>The Nine Value Drivers</h2>
+        <span class="note">Strategic impact &amp; quantified basis</span>
+      </div>
+
+      <div class="drivers" id="drivers"></div>
+
+      <!-- ROI band -->
+      <div class="investment-field">
+        <span class="txt"><b style="color:var(--white)">Estimated annual BlackLine investment</b> — license + implementation amortized. Adjust to model net ROI &amp; payback.</span>
+        <div class="input-shell"><span class="pre">$</span><input type="number" id="investment" value="900000"><span class="post">/yr</span></div>
+      </div>
+
+      <div class="roi-band">
+        <div class="item">
+          <div class="lbl">Total Annual Value</div>
+          <div class="num big" id="r_value">$0</div>
+          <div class="cap">across all drivers</div>
+        </div>
+        <div class="item">
+          <div class="lbl">Net Annual Benefit</div>
+          <div class="num" id="r_net">$0</div>
+          <div class="cap">value − investment</div>
+        </div>
+        <div class="item">
+          <div class="lbl">Year-1 ROI</div>
+          <div class="num big" id="r_roi">0%</div>
+          <div class="cap">return on investment</div>
+        </div>
+        <div class="item">
+          <div class="lbl">Payback Period</div>
+          <div class="num" id="r_payback">0 mo</div>
+          <div class="cap">to recover investment</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button onclick="window.print()">⤓ Export / Print BVA</button>
+        <button class="ghost" id="copyLink">⧉ Copy shareable link</button>
+      </div>
+
+      <div class="method">
+        <h3>Methodology &amp; Assumptions</h3>
+        <p>This Business Value Assessment applies a conservative, benchmark-driven model to the value drivers
+           BlackLine delivers across the Record-to-Report (RTR) lifecycle. Each quantified driver is calculated
+           directly from your inputs using the basis noted on its card. Figures are directional estimates intended
+           to frame a business case, not a guarantee of results.</p>
+        <ul>
+          <li><b>Process Efficiency &amp; Labor Optimization</b> — recaptured F&amp;A capacity: ~38% of close/recon effort (≈30% of total F&amp;A time) automated, valued at fully-loaded cost.</li>
+          <li><b>Working-Capital Optimization</b> — freed cash from a 5-day DSO reduction, valued at WACC; plus intercompany liquidity release.</li>
+          <li><b>Talent Retention &amp; Empowerment</b> — a 4-point turnover reduction × replacement cost (~75% of salary).</li>
+          <li><b>Regulatory Compliance</b> — ~18% reduction in controls &amp; audit cost, plus avoided misstatement/penalty risk.</li>
+          <li><b>M&amp;A Integration</b> — avoided integration FTEs and faster Day-1 readiness per deal.</li>
+          <li><b>Trust Premium</b> — ~15 bps borrowing-cost improvement on outstanding debt from higher-quality, auditable financials.</li>
+          <li><b>Innovation Capacity, AI Readiness, Real-Time Decision Making</b> — strategic enablers shown with directional value where applicable.</li>
+        </ul>
+        <p style="margin-top:12px">Prepared by <b style="color:var(--gray-light)">Cima Advisors, CPAs LLC</b>. All assumptions are editable and should be validated with the customer's finance leadership.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap"><span class="bl">BlackLine</span> Business Value Assessment · Confidential · Prepared by Cima Advisors, CPAs LLC · 2026</div>
+</footer>
+
+<script>
+  // ── Value-driver definitions (from "How BlackLine Impacts Your Company") ──
+  const DRIVERS = [
+    {
+      id: 'efficiency',
+      name: 'Process Efficiency & Labor Optimization',
+      impacts: [
+        'Standardize and automate key RTR processes, reducing manual effort across the financial close',
+        'Free up Accounting resources to focus on strategic work and become elevated business partners',
+        'Reduction in cost, error rates and days to close'
+      ],
+      calc: i => {
+        // ~30% of F&A time on close/recon; BlackLine automates ~38% of it
+        const closeLabor = i.ftes * i.salary * 0.30;
+        return closeLabor * 0.38;
+      },
+      basis: i => `30% of ${fmtN(i.ftes)} FTEs' time on close × 38% automation`
+    },
+    {
+      id: 'workingcap',
+      name: 'Working-Capital Optimization',
+      impacts: [
+        'Decrease external DSO by accelerating customer cash receipt and application',
+        'Release trapped internal liquidity by accelerating intercompany reconciliation, settlement & netting',
+        'Improved cash flow and financing efficiency based on Weighted Average Cost of Capital'
+      ],
+      calc: i => {
+        const dailyRev = i.revenue / 365;
+        const freedCash = dailyRev * 5;              // 5-day DSO improvement
+        const intercoLiquidity = i.revenue * 0.004;  // trapped interco liquidity released
+        return (freedCash + intercoLiquidity) * (i.wacc / 100);
+      },
+      basis: i => `5-day DSO reduction + interco liquidity, valued at ${i.wacc}% WACC`
+    },
+    {
+      id: 'innovation',
+      name: 'Innovation Capacity',
+      impacts: [
+        'Free up Accounting resources to focus on strategic work',
+        'Accounting resources have time to innovate processes and reporting',
+        'Innovative ideas provide savings, improved ROI and retain employees'
+      ],
+      calc: i => {
+        // redeployed capacity reinvested into improvement initiatives (~10% of recaptured labor → value)
+        const recaptured = i.ftes * i.salary * 0.30 * 0.38;
+        return recaptured * 0.28;
+      },
+      basis: i => `28% productivity uplift on redeployed close capacity`
+    },
+    {
+      id: 'talent',
+      name: 'Talent Retention & Empowerment',
+      impacts: [
+        'Optimize the Accounting and Finance function',
+        'Shift resources from spreadsheet-driven execution toward analysis and insight',
+        'Happier employees, less burnout and reduced turnover'
+      ],
+      calc: i => {
+        const reduction = 0.04;                      // 4-point turnover reduction
+        const replaceCost = i.salary * 0.75;         // cost to replace ~75% of salary
+        return i.ftes * reduction * replaceCost;
+      },
+      basis: i => `4-pt turnover reduction × 75% replacement cost`
+    },
+    {
+      id: 'mna',
+      name: 'M&A Integration',
+      impacts: [
+        'Quickly onboard new companies for Day-1 visibility, reducing integration risk',
+        "Scale with increased workload without adding FTE's",
+        'Accelerate merger synergies, reduce cost and improve integration success rate'
+      ],
+      calc: i => {
+        // avoided integration FTEs + faster readiness per deal
+        const perDeal = i.salary * 1.5 + 60000;
+        return i.deals * perDeal;
+      },
+      basis: i => `${fmtN(i.deals)} deals/yr × avoided integration FTEs & faster Day-1`
+    },
+    {
+      id: 'compliance',
+      name: 'Regulatory Compliance',
+      impacts: [
+        'Improved internal controls and end-to-end RTR visibility',
+        'Decrease costs associated with internal control and regulatory compliance',
+        'Greater confidence in financials; reduce risk of control deficiencies, misstatements & fines'
+      ],
+      calc: i => {
+        const costReduction = i.compliance * 0.18;
+        const riskAvoidance = i.revenue * 0.0006;    // expected misstatement/penalty risk avoided
+        return costReduction + riskAvoidance;
+      },
+      basis: i => `18% of compliance cost + avoided misstatement risk`
+    },
+    {
+      id: 'trust',
+      name: 'Trust Premium',
+      impacts: [
+        'Improve confidence in reported results through consistent, auditable processes',
+        'Support leadership decision-making and external stakeholder trust',
+        'High-quality financials reduce interest charges on loans, improving overall profit'
+      ],
+      calc: i => i.debt * 0.0015,                     // ~15 bps borrowing-cost improvement
+      basis: i => `15 bps lower borrowing cost on ${fmtUSD(i.debt)} debt`
+    },
+    {
+      id: 'ai',
+      name: 'AI Readiness',
+      impacts: [
+        'The age of AI is here, and organizations are moving to adopt it',
+        'Establishes a governed, standardized data foundation to responsibly scale AI, analytics & predictive finance'
+      ],
+      qualitative: 'Strategic Enabler',
+      calc: () => 0,
+      basis: () => `Foundation for governed AI & predictive finance`
+    },
+    {
+      id: 'realtime',
+      name: 'Real-Time Decision Making',
+      impacts: [
+        'Real-time data is foundational to timely, well-informed management decisions',
+        'Provides confidence to decision-makers and reduces the risk of ill-informed decisions'
+      ],
+      qualitative: 'Strategic Enabler',
+      calc: () => 0,
+      basis: () => `Faster, higher-confidence decisions`
+    }
+  ];
+
+  const PRESETS = {
+    mid:   { revenue:500000000, ftes:45,  salary:95000,  dso:52, close:9,  wacc:9,   debt:120000000, compliance:2200000, turnover:16, deals:2, investment:900000 },
+    ent:   { revenue:3000000000,ftes:180, salary:110000, dso:48, close:7,  wacc:8.5, debt:750000000, compliance:9000000, turnover:14, deals:5, investment:3200000 },
+    lower: { revenue:120000000, ftes:14,  salary:82000,  dso:58, close:12, wacc:11,  debt:30000000,  compliance:650000,  turnover:19, deals:1, investment:280000 }
+  };
+
+  const ID_KEYS = ['revenue','ftes','salary','dso','close','wacc','debt','compliance','turnover','deals','investment'];
+
+  // ── formatting ──
+  function fmtUSD(n){
+    if (!isFinite(n)) return '$0';
+    const abs = Math.abs(n);
+    if (abs >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+    if (abs >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+    if (abs >= 1e3) return '$' + Math.round(n/1e3) + 'K';
+    return '$' + Math.round(n);
+  }
+  function fmtUSDfull(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+  function fmtN(n){ return Number(n).toLocaleString('en-US'); }
+
+  function readInputs(){
+    const i = {};
+    ID_KEYS.forEach(k => i[k] = parseFloat(document.getElementById(k).value) || 0);
+    return i;
+  }
+
+  function build(){
+    const driversEl = document.getElementById('drivers');
+    driversEl.innerHTML = DRIVERS.map(d => `
+      <div class="driver" data-id="${d.id}">
+        <div class="dhead">
+          <div class="dname">${d.name}</div>
+          <div class="dvalue ${d.qualitative ? 'qual' : ''}" data-val="${d.id}">—</div>
+        </div>
+        <ul>${d.impacts.map(x => `<li>${x}</li>`).join('')}</ul>
+        <div class="basis" data-basis="${d.id}"></div>
+      </div>`).join('');
+  }
+
+  function recalc(){
+    const i = readInputs();
+    const rows = DRIVERS.map(d => ({ d, value: Math.max(0, d.calc(i)) }));
+    const quantTotal = rows.reduce((s,r) => s + (r.d.qualitative ? 0 : r.value), 0);
+
+    // driver cards
+    rows.forEach(r => {
+      const valEl = document.querySelector(`[data-val="${r.d.id}"]`);
+      const basisEl = document.querySelector(`[data-basis="${r.d.id}"]`);
+      valEl.textContent = r.d.qualitative ? r.d.qualitative : fmtUSD(r.value);
+      basisEl.innerHTML = `<b>Basis:</b> ${r.d.basis(i)}`;
+    });
+
+    // chart (quantified only, sorted desc)
+    const quant = rows.filter(r => !r.d.qualitative).sort((a,b) => b.value - a.value);
+    const max = Math.max(...quant.map(r => r.value), 1);
+    document.getElementById('chart').innerHTML = quant.map(r => `
+      <div class="bar-row">
+        <div class="name">${r.d.name}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(r.value/max*100).toFixed(1)}%"></div></div>
+        <div class="amt">${fmtUSD(r.value)}</div>
+      </div>`).join('');
+
+    // topline + ROI
+    const threeYr = quantTotal * 3;
+    const pct = i.revenue ? quantTotal / i.revenue * 100 : 0;
+    const net = quantTotal - i.investment;
+    const roi = i.investment ? net / i.investment * 100 : 0;
+    const payback = quantTotal > 0 ? i.investment / quantTotal * 12 : 0;
+
+    document.getElementById('t_annual').textContent = fmtUSD(quantTotal);
+    document.getElementById('t_three').textContent  = fmtUSD(threeYr);
+    document.getElementById('t_pct').textContent    = pct.toFixed(2) + '%';
+    document.getElementById('t_roi').textContent    = Math.round(roi) + '%';
+
+    document.getElementById('r_value').textContent  = fmtUSD(quantTotal);
+    document.getElementById('r_net').textContent    = fmtUSD(net);
+    document.getElementById('r_roi').textContent    = Math.round(roi) + '%';
+    document.getElementById('r_payback').textContent = payback > 0 ? payback.toFixed(1) + ' mo' : '—';
+
+    syncURL(i);
+  }
+
+  // ── presets ──
+  function applyPreset(name){
+    const p = PRESETS[name];
+    if (!p) return;
+    ID_KEYS.forEach(k => { if (p[k] != null) document.getElementById(k).value = p[k]; });
+    document.querySelectorAll('.preset-row button').forEach(b =>
+      b.classList.toggle('active', b.dataset.preset === name));
+    recalc();
+  }
+
+  // ── shareable URL ──
+  function syncURL(i){
+    const params = new URLSearchParams();
+    ID_KEYS.forEach(k => params.set(k, i[k]));
+    history.replaceState(null, '', '?' + params.toString());
+  }
+  function loadFromURL(){
+    const params = new URLSearchParams(location.search);
+    if (![...params.keys()].length) return false;
+    ID_KEYS.forEach(k => { if (params.has(k)) document.getElementById(k).value = params.get(k); });
+    document.querySelectorAll('.preset-row button').forEach(b => b.classList.remove('active'));
+    return true;
+  }
+
+  // ── wire up ──
+  build();
+  if (!loadFromURL()) applyPreset('mid'); else recalc();
+
+  ID_KEYS.forEach(k => document.getElementById(k).addEventListener('input', () => {
+    document.querySelectorAll('.preset-row button').forEach(b => b.classList.remove('active'));
+    recalc();
+  }));
+  document.querySelectorAll('.preset-row button').forEach(b =>
+    b.addEventListener('click', () => applyPreset(b.dataset.preset)));
+  document.getElementById('reset').addEventListener('click', () => applyPreset('mid'));
+  document.getElementById('copyLink').addEventListener('click', e => {
+    navigator.clipboard?.writeText(location.href).then(() => {
+      const btn = e.currentTarget;
+      const t = btn.textContent; btn.textContent = '✓ Link copied';
+      setTimeout(() => btn.textContent = t, 1600);
+    });
+  });
+</script>
+</body>
+</html>
