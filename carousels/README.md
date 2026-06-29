@@ -3,20 +3,44 @@
 Plan de contenido para Instagram: **3 publicaciones por semana × 4 semanas = 12 carruseles**
 sobre temas de contabilidad e impuestos, en **español**, para la comunidad latina de Denver, CO.
 
-- **Marca:** Cima Advisors, CPAs LLC
-- **Formato:** Carrusel de Instagram (6 diapositivas, 1080×1350, 4:5)
-- **Estilo:** azul marino `#1a2f5e` con acentos dorados `#c9a84c`, titulares serif elegantes,
-  cuerpo sans-serif, look financiero minimalista.
+- **Marca:** CIMA Advisors CPA LLC · **Web:** cimaadvisorscpa.com
+- **Formato:** Carrusel de Instagram (6 diapositivas).
 - **Cadencia sugerida:** Lunes / Miércoles / Viernes.
 
-Cada carrusel se generó en Canva con **4 variantes de diseño**. Abre los enlaces, elige tu
-favorita y guárdala/edítala en tu cuenta de Canva.
+> 🚨 **IMPORTANTE — los enlaces v1 de abajo están FUERA DE MARCA.** Se generaron con una
+> paleta incorrecta (azul marino oscuro de fondo + acentos **dorados**). Según las
+> *Brand Guidelines* de CIMA, el dorado y los fondos oscuros están **prohibidos**. Estos 9
+> diseños deben **regenerarse** con el brief corregido (ver abajo) en cuanto se reinicie la
+> cuota de Canva. Sirven solo como borrador de estructura/contenido.
 
-> ⚙️ **Estado de generación:** 9 de 12 carruseles generados (temas 1–8 y 10). Los temas
-> **9, 11 y 12** quedaron pendientes porque se alcanzó el límite de cuota de Canva en la sesión;
-> se pueden generar cuando la cuota se reinicie (los textos y la estructura ya están definidos abajo).
-> El guardado automático en la cuenta (`create-design-from-candidate`) quedó bloqueado por el
-> gate de aprobaciones de esta sesión; por eso se entregan los enlaces de diseño para guardarlos a un clic.
+### 🎨 Brand spec OFICIAL (usar para regenerar)
+- **Fondos:** blanco `#FFFFFF` / gris claro `#F4F6F8`, mucho espacio en blanco. **Nunca fondos oscuros.**
+- **Colores:** Deep Navy `#0D2B5E` (titulares, botones) + Royal Blue `#1A5CB5` (acentos, íconos, CTA). **Nada más.**
+- **Prohibido:** dorado, naranja, rojo, neón, gradientes excesivos, caricaturas/ilustraciones, fondos recargados.
+- **Layout:** logo CIMA arriba-izquierda · texto a la **izquierda** · **foto realista** (profesionales
+  latinos, oficina moderna, luz natural) a la **derecha**, esquinas redondeadas y sombra suave.
+- **Tipografía:** titulares grandes en negrita, alto contraste, legible en móvil, look corporativo (estilo Deloitte/EY pero en navy/azul).
+- **Íconos:** planos, simples, solo navy/azul.
+- **Footer:** web `cimaadvisorscpa.com` + navegación `Taxes · Accounting · Payroll · Sales Tax`.
+- **CTA:** botón redondeado, fondo deep navy, texto blanco — "Contáctanos hoy / Contact Us Today".
+- **Tamaño:** 1080×1080 (cuadrado) según guía. *Nota técnica: la herramienta `generate-design` de
+  Canva produce 1080×1350 (4:5); para cuadrado exacto, usar `resize-design` tras guardar el diseño.*
+
+**Prompt maestro para regenerar (reemplaza `{TEMA}` y los `{tips}`):**
+> Premium 6-slide Instagram carousel in SPANISH for "CIMA Advisors CPA LLC", a modern high-end CPA
+> firm in Denver, CO serving Latino professionals and small-business owners. STRICT BRAND: clean
+> WHITE / light-gray (#F4F6F8) backgrounds, lots of white space, NEVER dark backgrounds. Use ONLY
+> deep navy (#0D2B5E) + royal blue (#1A5CB5). NO gold/orange/red/neon, no cartoons/illustrations,
+> minimal gradients. Each slide: CIMA logo upper-left; bold navy headline + short body on the LEFT;
+> realistic PHOTO of confident Latino business owners/accountants in a bright modern office on the
+> RIGHT (rounded corners, soft shadow); flat navy/blue icons; footer with cimaadvisorscpa.com and
+> nav Taxes · Accounting · Payroll · Sales Tax; rounded deep-navy "Contáctanos hoy" CTA button.
+> Corporate quality like Deloitte/EY in a navy/blue palette. Topic: {TEMA}. Slides: cover + 4 tips + CTA.
+
+> ⚙️ **Estado:** 9/12 generados (temas 1–8 y 10) **pero fuera de marca (v1)**. Temas **9, 11, 12**
+> no se generaron por límite de cuota de Canva. El guardado en cuenta (`create-design-from-candidate`)
+> quedó bloqueado por el gate de aprobaciones de la sesión. **Próximo paso:** regenerar los 12 con el
+> brief corregido cuando la cuota se reinicie.
 
 ---
 
@@ -39,9 +63,12 @@ favorita y guárdala/edítala en tu cuenta de Canva.
 
 ---
 
-## 🎨 Diseños generados (enlaces de Canva)
+## 🎨 Diseños v1 — ⚠️ FUERA DE MARCA (enlaces de Canva)
 
-Para cada tema: **Recomendada** primero, luego 3 alternativas.
+> Estos diseños usan la paleta incorrecta (dorado + fondo oscuro). Úsalos solo como referencia de
+> estructura/contenido; se regenerarán con el brief oficial de arriba cuando se reinicie la cuota.
+
+Para cada tema: 4 variantes generadas.
 
 ### 1 · 5 errores de contabilidad que le cuestan dinero
 - Recomendada: https://www.canva.com/d/l23eNEUTtC_AaJD
